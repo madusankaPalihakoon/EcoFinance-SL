@@ -30,19 +30,52 @@ class Auth {
 
   logout() {
     localStorage.removeItem(CONFIG.TOKEN_KEY);
-
     localStorage.removeItem(CONFIG.USER_KEY);
 
-    window.location.href = "../login.html";
+    sessionStorage.removeItem(CONFIG.TOKEN_KEY);
+    sessionStorage.removeItem(CONFIG.USER_KEY);
+
+    this.redirectToLogin();
   }
+  
 
   isAuthenticated() {
-    return localStorage.getItem(CONFIG.TOKEN_KEY) !== null;
+    return !!localStorage.getItem(CONFIG.TOKEN_KEY);
   }
 
   getUser() {
-    return JSON.parse(localStorage.getItem(CONFIG.USER_KEY));
+    const user = localStorage.getItem(CONFIG.USER_KEY);
+    
+    if (!user) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(user);
+    } catch {
+      return null;
+    }
+    
+  }
+    redirectToLogin() {
+    const path = window.location.pathname;
+    const marker = "/dashboard/";
+    const index = path.indexOf(marker);
+
+    if (index !== -1) {
+      const root = path.substring(0, index);
+      window.location.href = `${root}/login.html`;
+    } else {
+      window.location.href = "login.html";
+    }
+  }
+    protectPage() {
+    if (!this.isAuthenticated()) {
+      this.redirectToLogin();
+      return false;
+    }
+
+    return true;
   }
 }
-
 export default new Auth();
