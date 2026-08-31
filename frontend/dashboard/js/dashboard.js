@@ -262,34 +262,27 @@ async function loadCharts(token) {
                 {
                     method: "GET",
                     headers: {
-                        "Content-Type": "application/json",
                         "Authorization": `Bearer ${token}`
                     }
                 }
             );
 
+        const esgResult = await esgResponse.json();
+
+        console.log("ESG API:", esgResult);
+
         let esgData = [];
 
-        if (esgResponse.ok) {
-
-            const esgResult =
-                await esgResponse.json();
-
-            console.log(
-                "ESG API:",
-                esgResult
-            );
-
-            if (esgResult.success) {
-
-                esgData =
-                    esgResult.data || [];
-            }
+        if (
+            esgResult.success &&
+            Array.isArray(esgResult.data)
+        ) {
+            esgData = esgResult.data;
         }
 
-        createCarbonChart(carbonData);
-
         createESGChart(esgData);
+
+        createCarbonChart(carbonData);
 
     } catch (error) {
 
@@ -387,35 +380,116 @@ function createESGChart(records) {
         document.getElementById("esgChart");
 
     if (!canvas) {
+        console.warn("ESG chart canvas not found.");
         return;
     }
 
-    const labels = records.map(
-        item => {
 
-            const date =
-                item.created_at ||
-                item.date ||
-                item.recorded_at;
+    // --------------------------------------------------------
+    // Make sure records is an array
+    // --------------------------------------------------------
 
-            if (!date) {
-                return "";
+    if (!Array.isArray(records)) {
+
+        console.error(
+            "ESG chart expected an array:",
+            records
+        );
+
+        records = [];
+    }
+
+
+    // --------------------------------------------------------
+    // Destroy existing chart
+    // --------------------------------------------------------
+
+    const existingChart =
+        Chart.getChart(canvas);
+
+    if (existingChart) {
+        existingChart.destroy();
+    }
+
+
+    // --------------------------------------------------------
+    // No data
+    // --------------------------------------------------------
+
+    if (!records.length) {
+
+        console.log(
+            "No ESG records available for chart."
+        );
+
+        return;
+    }
+
+
+    // --------------------------------------------------------
+    // Labels
+    // --------------------------------------------------------
+
+    const labels =
+        records.map((item) => {
+
+            if (item.created_at) {
+
+                const date =
+                    new Date(item.created_at);
+
+                if (!isNaN(date.getTime())) {
+
+                    return date.toLocaleDateString(
+                        "en-GB",
+                        {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric"
+                        }
+                    );
+                }
             }
 
-            return new Date(date)
-                .toLocaleDateString();
-        }
+            return "Unknown";
+        });
+
+
+    // --------------------------------------------------------
+    // ESG Overall Scores
+    // --------------------------------------------------------
+
+    const values =
+        records.map((item) => {
+
+            return Number(
+                item.overall_score ??
+                item.score ??
+                item.esg_score ??
+                item.average_score ??
+                0
+            );
+        });
+
+
+    // --------------------------------------------------------
+    // Debug
+    // --------------------------------------------------------
+
+    console.log(
+        "ESG Chart Labels:",
+        labels
     );
 
-    const values = records.map(
-        item =>
-            Number(
-                item.score ||
-                item.esg_score ||
-                item.average_score ||
-                0
-            )
+    console.log(
+        "ESG Chart Values:",
+        values
     );
+
+
+    // --------------------------------------------------------
+    // Create Chart
+    // --------------------------------------------------------
 
     new Chart(
         canvas,
@@ -423,12 +497,12 @@ function createESGChart(records) {
             type: "line",
 
             data: {
+
                 labels: labels,
 
                 datasets: [
                     {
-                        label:
-                            "ESG Score",
+                        label: "ESG Score",
 
                         data: values,
 
@@ -436,21 +510,67 @@ function createESGChart(records) {
 
                         tension: 0.3,
 
-                        fill: false
+                        fill: false,
+
+                        pointRadius: 5,
+
+                        pointHoverRadius: 7
                     }
                 ]
             },
 
             options: {
+
                 responsive: true,
 
                 maintainAspectRatio: false,
 
                 scales: {
+
                     y: {
+
                         beginAtZero: true,
 
-                        max: 100
+                        min: 0,
+
+                        max: 100,
+
+                        title: {
+                            display: true,
+                            text: "ESG Score"
+                        }
+                    },
+
+                    x: {
+
+                        ticks: {
+
+                            maxRotation: 45,
+
+                            minRotation: 45
+                        }
+                    }
+                },
+
+                plugins: {
+
+                    legend: {
+
+                        display: true
+                    },
+
+                    tooltip: {
+
+                        callbacks: {
+
+                            label: function (context) {
+
+                                return (
+                                    "ESG Score: " +
+                                    context.parsed.y
+                                );
+                            }
+                        }
                     }
                 }
             }
