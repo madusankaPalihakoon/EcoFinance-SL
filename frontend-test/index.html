@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>EcoFinance SL</title>
+
+  <script type="module">
+    import auth from "./assets/js/auth.js";
+
+    if (auth.isAuthenticated()) {
+      window.location.href = "/dashboard/dashboard.html";
+    } else {
+      window.location.href = "/login.html";
+    }
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>

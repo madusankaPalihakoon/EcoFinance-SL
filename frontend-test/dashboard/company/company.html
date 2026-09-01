@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Company</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="../../assets/css/common.css" />
+
+    <link rel="stylesheet" href="company.css" />
+  </head>
+
+  <body class="bg-gray-100">
+    <div class="flex min-h-screen">
+      <div id="sidebar"></div>
+
+      <div class="flex-1">
+        <div id="header"></div>
+
+        <main class="p-8">
+          <div class="card">
+            <h2 class="text-2xl font-bold mb-6">Company Information</h2>
+
+            <form id="companyForm">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label>Company Name</label>
+                  <input id="company_name" class="input" />
+                </div>
+
+                <div>
+                  <label>Registration No</label>
+                  <input id="registration_no" class="input" />
+                </div>
+
+                <div>
+                  <label>Business Sector</label>
+                  <input id="business_sector" class="input" />
+                </div>
+
+                <div>
+                  <label>Website</label>
+                  <input id="website" class="input" />
+                </div>
+
+                <div>
+                  <label>Contact Number</label>
+                  <input id="contact_no" class="input" />
+                </div>
+
+                <div>
+                  <label>Province</label>
+                  <input id="province" class="input" />
+                </div>
+
+                <div>
+                  <label>District</label>
+                  <input id="district" class="input" />
+                </div>
+
+                <div class="md:col-span-2">
+                  <label>Address</label>
+                  <textarea id="address" rows="3" class="input"> </textarea>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <button id="saveBtn" class="btn-primary">Save Company</button>
+              </div>
+            </form>
+          </div>
+        </main>
+
+        <div id="footer"></div>
+      </div>
+    </div>
+
+    <script type="module" src="company.js"></script>
+  </body>
+</html>

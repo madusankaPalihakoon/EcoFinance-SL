@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard | EcoFinance SL</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-64 shrink-0"></div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Header -->
+            <div id="header"></div>
+
+            <main class="flex-1 overflow-y-auto p-8">
+                <!-- Welcome -->
+
+                <div class="bg-white rounded-xl shadow p-6 mb-8">
+                    <h1 class="text-3xl font-bold">
+                        Welcome,
+
+                        <span id="userName"></span>
+                    </h1>
+
+                    <p class="text-gray-500 mt-2">Sustainability Reporting Dashboard</p>
+                </div>
+
+                <!-- Cards -->
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="card">
+                        <h3 class="text-gray-500">Company</h3>
+
+                        <p id="companyName" class="text-2xl font-bold mt-2">-</p>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="text-gray-500">ESG Score</h3>
+
+                        <p id="esgScore" class="text-2xl font-bold text-green-600 mt-2">
+                            -
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="text-gray-500">Carbon Emission</h3>
+
+                        <p id="carbonEmission" class="text-2xl font-bold text-red-500 mt-2">
+                            -
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="text-gray-500">Reports</h3>
+
+                        <p id="reportCount" class="text-2xl font-bold mt-2">-</p>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+
+                <div class="bg-white rounded-xl shadow p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4">Quick Actions</h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <a href="business/new.html" class="btn-primary text-center">
+                            Business Data
+                        </a>
+
+                        <a href="esg/new.html" class="btn-primary text-center">
+                            ESG Assessment
+                        </a>
+
+                        <a href="reports/generate.html" class="btn-primary text-center">
+                            Generate Report
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div class="card">
+                        <h2 class="font-semibold mb-4">Carbon Trend</h2>
+
+                        <canvas id="carbonChart"></canvas>
+                    </div>
+
+                    <div class="card">
+                        <h2 class="font-semibold mb-4">ESG Trend</h2>
+
+                        <canvas id="esgChart"></canvas>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/js/dashboard.js"></script>
+</body>
+
+</html>

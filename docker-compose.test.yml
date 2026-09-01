@@ -1,0 +1,48 @@
+services:
+
+  test-backend:
+    build:
+      context: ./backend
+
+    container_name: ecofinance-test-backend
+
+    restart: unless-stopped
+
+    environment:
+      DB_HOST: ecofinance-db
+      DB_PORT: 3306
+      DB_NAME: ${TEST_DB_NAME}
+      DB_USER: ${TEST_DB_USER}
+      DB_PASSWORD: ${TEST_DB_PASSWORD}
+
+      SECRET_KEY: ${TEST_SECRET_KEY}
+      JWT_SECRET_KEY: ${TEST_JWT_SECRET_KEY}
+
+    expose:
+      - "5000"
+
+    networks:
+      - ecofinance-test
+
+
+  test-frontend:
+    image: nginx:alpine
+
+    container_name: ecofinance-test-frontend
+
+    restart: unless-stopped
+
+    volumes:
+      - ./frontend-test:/usr/share/nginx/html:ro
+
+    expose:
+      - "80"
+
+    networks:
+      - ecofinance-test
+
+
+networks:
+
+  ecofinance-test:
+    external: true

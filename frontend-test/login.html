@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login | EcoFinance SL</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="./assets/css/common.css" />
+
+    <link rel="stylesheet" href="./assets/css/login.css" />
+  </head>
+
+  <body class="bg-slate-100">
+    <div class="min-h-screen flex">
+      <!-- Left Side -->
+
+      <div
+        class="hidden lg:flex w-1/2 bg-emerald-700 text-white justify-center items-center"
+      >
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold mb-6">EcoFinance SL</h1>
+
+          <p class="text-xl leading-8">
+            Sustainability Reporting & ESG Management Platform
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+
+      <div class="flex-1 flex justify-center items-center">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-10">
+          <h2 class="text-3xl font-bold text-center">Welcome Back</h2>
+
+          <p class="text-center text-gray-500 mt-2">Sign in to continue</p>
+
+          <form id="loginForm" class="mt-8 space-y-6">
+            <div>
+              <label>Email</label>
+
+              <input
+                id="email"
+                type="email"
+                required
+                class="w-full border rounded-lg p-3 mt-2"
+              />
+            </div>
+
+            <div>
+              <label>Password</label>
+
+              <input
+                id="password"
+                type="password"
+                required
+                class="w-full border rounded-lg p-3 mt-2"
+              />
+            </div>
+
+            <button
+              class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-lg"
+            >
+              Login
+            </button>
+          </form>
+
+          <p class="text-center mt-6">
+            Don't have an account?
+
+            <a href="register.html" class="text-emerald-600 font-semibold">
+              Register
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./assets/js/login.js"></script>
+  </body>
+</html>

@@ -11,17 +11,3 @@ ecofinancesl.online, www.ecofinancesl.online {
         file_server
     }
 }
-
-
-test.ecofinancesl.online {
-
-    encode gzip
-
-    handle /api/* {
-        reverse_proxy ecofinance-test-backend:5000
-    }
-
-    handle {
-        reverse_proxy ecofinance-test-frontend:80
-    }
-}
