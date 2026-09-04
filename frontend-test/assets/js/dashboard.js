@@ -2,97 +2,556 @@ import api from "./api.js";
 import auth from "./auth.js";
 import { initLayout } from "./layout.js";
 
+
 let carbonChart = null;
 let esgChart = null;
 
-initLayout({
-    title: "Dashboard",
 
-    basePath: "../",
+// INITIALIZE LAYOUT
+
+initLayout({
+    title: "Dashboard"
 });
 
-const user = auth.getUser();
 
-document.getElementById("userName").textContent = user.full_name;
+// GET CURRENT USER
+
+const user = auth.getUser() || {};
+
+
+// Display username
+
+const userName =
+    document.getElementById("userName");
+
+if (userName) {
+
+    userName.textContent =
+        user.full_name || "User";
+
+}
+
+
+// LOAD DASHBOARD
 
 loadDashboard();
 
-async function loadDashboard() {
-    try {
-        const response = await api.get("/dashboard/");
 
-        if (!response.success) {
-            throw new Error("Unable to load dashboard");
+async function loadDashboard() {
+
+    try {
+
+        console.log("Loading dashboard...");
+
+
+        const response =
+            await api.get("/dashboard/");
+
+
+        console.log(
+            "Dashboard API response:",
+            response
+        );
+
+
+        if (!response || !response.success) {
+
+            throw new Error(
+                response?.message ||
+                "Unable to load dashboard data."
+            );
+
         }
 
-        const data = response.data;
 
-        console.log(data);
+        const data =
+            response.data || {};
 
-        document.getElementById("companyName").textContent =
-            data.company_name ?? "-";
 
-        document.getElementById("esgScore").textContent = data.average_esg_score;
+        console.log(
+            "Dashboard data:",
+            data
+        );
 
-        document.getElementById("carbonEmission").textContent =
-            Number(data.total_emission).toFixed(2) + " tCO₂e";
+        // COMPANY
 
-        document.getElementById("reportCount").textContent = data.total_reports;
+        const companyName =
+            document.getElementById(
+                "companyName"
+            );
+
+
+        if (companyName) {
+
+            companyName.textContent =
+                data.company_name || "-";
+
+        }
+
+
+        // ESG SCORE
+
+        const esgScoreElement =
+            document.getElementById(
+                "esgScore"
+            );
+
+
+        let esgScore =
+            Number(
+                data.average_esg_score
+            );
+
+
+        if (
+            !Number.isFinite(esgScore)
+        ) {
+
+            esgScore = 0;
+
+        }
+
+
+        if (esgScoreElement) {
+
+            esgScoreElement.textContent =
+                esgScore.toFixed(1);
+
+        }
+
+
+        // CARBON EMISSION
+
+        const carbonElement =
+            document.getElementById(
+                "carbonEmission"
+            );
+
+
+        let totalEmission =
+            Number(
+                data.total_emission
+            );
+
+
+        if (
+            !Number.isFinite(totalEmission)
+        ) {
+
+            totalEmission = 0;
+
+        }
+
+
+        if (carbonElement) {
+
+            carbonElement.textContent =
+                totalEmission.toFixed(2)
+                + " tCO₂e";
+
+        }
+
+
+        // REPORT COUNT
+
+        const reportElement =
+            document.getElementById(
+                "reportCount"
+            );
+
+
+        let totalReports =
+            Number(
+                data.total_reports
+            );
+
+
+        if (
+            !Number.isFinite(totalReports)
+        ) {
+
+            totalReports = 0;
+
+        }
+
+
+        if (reportElement) {
+
+            reportElement.textContent =
+                totalReports;
+
+        }
+
+
+        // LOAD CHARTS
 
         loadCharts(data);
-    } catch (error) {
-        console.error(error);
+
     }
+
+    catch (error) {
+
+        console.error(
+            "Dashboard loading error:",
+            error
+        );
+
+    }
+
 }
 
+
+// LOAD CHARTS
+
 function loadCharts(data) {
-    if (carbonChart) {
-        carbonChart.destroy();
+
+
+    const carbonCanvas =
+        document.getElementById(
+            "carbonChart"
+        );
+
+
+    const esgCanvas =
+        document.getElementById(
+            "esgChart"
+        );
+
+
+    if (
+        !carbonCanvas ||
+        !esgCanvas
+    ) {
+
+        console.error(
+            "Chart canvas not found."
+        );
+
+        return;
+
     }
+
+
+    // DESTROY OLD CHARTS
+
+    if (carbonChart) {
+
+        carbonChart.destroy();
+
+        carbonChart = null;
+
+    }
+
 
     if (esgChart) {
+
         esgChart.destroy();
+
+        esgChart = null;
+
     }
 
-    carbonChart = new Chart(document.getElementById("carbonChart"), {
-        type: "line",
-        data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-            datasets: [
-                {
-                    label: "Carbon Emission (tCO₂e)",
-                    data: [
-                        data.total_emission,
-                        data.total_emission,
-                        data.total_emission,
-                        data.total_emission,
-                        data.total_emission,
-                        data.total_emission,
+
+    // CARBON DATA
+
+    let carbonLabels = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun"
+    ];
+
+
+    let carbonValues = [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ];
+
+
+
+    if (
+        Array.isArray(
+            data.carbon_trend
+        )
+    ) {
+
+        carbonLabels =
+            data.carbon_trend.map(
+                item =>
+                    item.month
+            );
+
+
+        carbonValues =
+            data.carbon_trend.map(
+                item =>
+                    Number(
+                        item.emission
+                    ) || 0
+            );
+
+    }
+
+
+    
+
+    else {
+
+        const total =
+            Number(
+                data.total_emission
+            ) || 0;
+
+
+        carbonValues = [
+            0,
+            0,
+            0,
+            0,
+            0,
+            total
+        ];
+
+    }
+
+
+    // CARBON CHART
+
+    carbonChart =
+        new Chart(
+            carbonCanvas,
+            {
+
+                type: "line",
+
+
+                data: {
+
+                    labels:
+                        carbonLabels,
+
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "Carbon Emission (tCO₂e)",
+
+
+                            data:
+                                carbonValues,
+
+
+                            borderColor:
+                                "#ef4444",
+
+
+                            backgroundColor:
+                                "rgba(239, 68, 68, 0.12)",
+
+
+                            fill: true,
+
+
+                            tension: 0.4,
+
+
+                            borderWidth: 3,
+
+
+                            pointRadius: 4,
+
+
+                            pointHoverRadius: 6
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive: true,
+
+
+                    maintainAspectRatio:
+                        false,
+
+
+                    interaction: {
+
+                        intersect: false,
+
+                        mode: "index"
+
+                    },
+
+
+                    plugins: {
+
+                        legend: {
+
+                            display: true,
+
+                            position: "top"
+
+                        }
+
+                    },
+
+
+                    scales: {
+
+                        y: {
+
+                            beginAtZero: true,
+
+
+                            title: {
+
+                                display: true,
+
+                                text:
+                                    "Carbon Emission (tCO₂e)"
+
+                            }
+
+                        },
+
+
+                        x: {
+
+                            title: {
+
+                                display: true,
+
+                                text:
+                                    "Month"
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+    // ESG SCORE
+
+    let esg =
+        Number(
+            data.average_esg_score
+        );
+
+
+    if (
+        !Number.isFinite(esg)
+    ) {
+
+        esg = 0;
+
+    }
+
+
+    /*
+     * Make sure score is between 0 and 100.
+     */
+
+    esg =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                esg
+            )
+        );
+
+
+    const remaining =
+        100 - esg;
+
+
+    // ESG CHART
+
+    esgChart =
+        new Chart(
+            esgCanvas,
+            {
+
+                type: "doughnut",
+
+
+                data: {
+
+                    labels: [
+                        "ESG Score",
+                        "Remaining"
                     ],
-                    borderColor: "#ef4444",
-                    backgroundColor: "rgba(239,68,68,.15)",
-                    fill: true,
-                    tension: 0.4,
-                },
-            ],
-        },
-    });
 
-    const esg = data.average_esg_score;
 
-    esgChart = new Chart(document.getElementById("esgChart"), {
-        type: "doughnut",
-        data: {
-            labels: ["ESG Score", "Remaining"],
-            datasets: [
-                {
-                    data: [esg, 100 - esg],
-                    backgroundColor: ["#10b981", "#e5e7eb"],
+                    datasets: [
+
+                        {
+
+                            data: [
+                                esg,
+                                remaining
+                            ],
+
+
+                            backgroundColor: [
+                                "#10b981",
+                                "#e5e7eb"
+                            ],
+
+
+                            borderWidth: 0
+
+                        }
+
+                    ]
+
                 },
-            ],
-        },
-        options: {
-            cutout: "70%",
-        },
-    });
+
+
+                options: {
+
+                    responsive: true,
+
+
+                    maintainAspectRatio:
+                        false,
+
+
+                    cutout: "72%",
+
+
+                    plugins: {
+
+                        legend: {
+
+                            position:
+                                "bottom"
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
 }

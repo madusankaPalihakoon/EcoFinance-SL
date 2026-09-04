@@ -2,58 +2,93 @@ import auth from "./auth.js";
 
 
 const MENU = [
+
     {
         title: "Dashboard",
+
         icon: "fa-solid fa-chart-column",
+
         page: "dashboard",
-        url: "/dashboard/dashboard.html",
+
+        url: "/dashboard/dashboard.html"
     },
+
 
     {
         title: "Company",
+
         icon: "fa-solid fa-building",
+
         page: "company",
-        url: "/dashboard/company/company.html",
+
+        url: "/dashboard/company/company.html"
     },
+
 
     {
         title: "Business Data",
+
         icon: "fa-solid fa-industry",
+
         page: "business",
-        url: "/dashboard/business/new.html",
+
+        url: "/dashboard/business/new.html"
     },
+
 
     {
         title: "ESG Data",
+
         icon: "fa-solid fa-seedling",
+
         page: "esg",
-        url: "/dashboard/esg/new.html",
+
+        url: "/dashboard/esg/new.html"
     },
+
 
     {
         title: "Reports",
+
         icon: "fa-solid fa-file-lines",
+
         page: "reports",
-        url: "/dashboard/reports/history.html",
+
+        url: "/dashboard/reports/history.html"
     },
+
 
     {
         title: "AI Reports",
+
         icon: "fa-solid fa-robot",
+
         page: "ai",
-        url: "/dashboard/ai/history.html",
+
+        url: "/dashboard/ai/history.html"
     },
+
 
     {
         title: "Profile",
+
         icon: "fa-solid fa-user",
+
         page: "profile",
-        url: "/dashboard/profile/profile.html",
-    },
+
+        url: "/dashboard/profile/profile.html"
+    }
+
 ];
 
 
-export function initLayout({ title = "Dashboard" } = {}) {
+// INITIALIZE LAYOUT
+
+export function initLayout(
+    {
+        title = "Dashboard"
+    } = {}
+) {
 
     renderSidebar();
 
@@ -64,13 +99,20 @@ export function initLayout({ title = "Dashboard" } = {}) {
 }
 
 
+// SIDEBAR
+
 function renderSidebar() {
 
     const sidebar =
-        document.getElementById("sidebar");
+        document.getElementById(
+            "sidebar"
+        );
+
 
     if (!sidebar) {
+
         return;
+
     }
 
 
@@ -90,6 +132,7 @@ function renderSidebar() {
             "
         >
 
+
             <!-- Logo -->
 
             <div
@@ -104,80 +147,142 @@ function renderSidebar() {
                 "
             >
 
-                <h1 class="text-2xl font-bold">
-                    EcoFinance SL
-                </h1>
+                <div class="flex items-center gap-3">
 
-                <p class="text-slate-400 text-sm mt-1">
-                    Sustainability Platform
-                </p>
+                    <div
+                        class="
+                            w-10
+                            h-10
+                            rounded-lg
+                            bg-emerald-600
+                            flex
+                            items-center
+                            justify-center
+                        "
+                    >
+
+                        <i
+                            class="
+                                fa-solid
+                                fa-leaf
+                            "
+                        ></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h1 class="text-xl font-bold">
+                            EcoFinance SL
+                        </h1>
+
+                        <p class="text-slate-400 text-xs">
+                            Sustainability Platform
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 
 
+
             <!-- Navigation -->
 
-            <nav class="mt-6 px-3 space-y-2">
+            <nav
+                class="
+                    mt-6
+                    px-3
+                    space-y-2
+                "
+            >
     `;
 
 
-    MENU.forEach((item) => {
+    MENU.forEach(
+        item => {
 
-        const isActive =
-            isCurrentPage(item.page, currentPath);
+            const active =
+                isCurrentPage(
+                    item.page,
+                    currentPath
+                );
 
 
-        html += `
+            html += `
 
-            <a
-                href="${item.url}"
-                data-page="${item.page}"
+                <a
+                    href="${item.url}"
+                    data-page="${item.page}"
+                    class="
+                        menu-item
+                        ${active ? "active" : ""}
+                    "
+                >
 
-                class="
-                    menu-item
-                    ${isActive ? "active" : ""}
-                "
-            >
+                    <i
+                        class="
+                            ${item.icon}
+                            w-5
+                        "
+                    ></i>
 
-                <i class="${item.icon} w-5"></i>
 
-                <span>
-                    ${item.title}
-                </span>
+                    <span>
+                        ${item.title}
+                    </span>
 
-            </a>
+                </a>
 
-        `;
+            `;
 
-    });
+        }
+    );
 
 
     html += `
 
             </nav>
 
+
+            <!-- Sidebar Footer -->
+
+            <div
+                class="
+                    absolute
+                    bottom-5
+                    left-0
+                    w-64
+                    text-center
+                    text-xs
+                    text-slate-500
+                "
+            >
+
+                EcoFinance SL © 2026
+
+            </div>
+
+
         </aside>
 
     `;
 
 
-    sidebar.innerHTML = html;
+    sidebar.innerHTML =
+        html;
 
 }
 
 
-function isCurrentPage(page, pathname) {
+// CURRENT PAGE
 
-    /*
-     * Match the actual dashboard section.
-     *
-     * /dashboard/dashboard.html
-     *              ^
-     *
-     * /dashboard/company/company.html
-     *              ^ company
-     */
-
+function isCurrentPage(
+    page,
+    pathname
+) {
 
     const parts =
         pathname
@@ -186,10 +291,14 @@ function isCurrentPage(page, pathname) {
 
 
     const dashboardIndex =
-        parts.indexOf("dashboard");
+        parts.indexOf(
+            "dashboard"
+        );
 
 
-    if (dashboardIndex === -1) {
+    if (
+        dashboardIndex === -1
+    ) {
 
         return false;
 
@@ -197,62 +306,30 @@ function isCurrentPage(page, pathname) {
 
 
     const section =
-        parts[dashboardIndex + 1];
+        parts[
+            dashboardIndex + 1
+        ];
 
 
-    switch (page) {
-
-        case "dashboard":
-
-            return section === "dashboard";
-
-
-        case "company":
-
-            return section === "company";
-
-
-        case "business":
-
-            return section === "business";
-
-
-        case "esg":
-
-            return section === "esg";
-
-
-        case "reports":
-
-            return section === "reports";
-
-
-        case "ai":
-
-            return section === "ai";
-
-
-        case "profile":
-
-            return section === "profile";
-
-
-        default:
-
-            return false;
-
-    }
+    return section === page;
 
 }
 
 
+// HEADER
+
 function renderHeader(title) {
 
     const header =
-        document.getElementById("header");
+        document.getElementById(
+            "header"
+        );
+
 
     if (!header) {
+
         return;
+
     }
 
 
@@ -261,11 +338,14 @@ function renderHeader(title) {
 
 
     const fullName =
-        user.full_name || "User";
+        user.full_name ||
+        "User";
 
 
     const email =
-        user.email || "";
+        user.email ||
+        "";
+
 
 
     header.innerHTML = `
@@ -285,31 +365,62 @@ function renderHeader(title) {
             "
         >
 
-            <!-- Page Information -->
+
+            <!-- Page Title -->
 
             <div>
 
-                <h2
-                    id="pageTitle"
+                <div class="flex items-center gap-2">
+
+                    <i
+                        class="
+                            fa-solid
+                            fa-chart-line
+                            text-emerald-600
+                        "
+                    ></i>
+
+
+                    <h2
+                        id="pageTitle"
+                        class="
+                            text-2xl
+                            font-bold
+                            text-slate-900
+                        "
+                    >
+                        ${title}
+                    </h2>
+
+                </div>
+
+
+                <p
                     class="
-                        text-2xl
-                        font-bold
-                        text-slate-900
+                        text-slate-500
+                        text-sm
+                        mt-1
                     "
                 >
-                    ${title}
-                </h2>
-
-                <p class="text-slate-500 text-sm mt-1">
                     Sustainability Reporting
                 </p>
 
             </div>
 
 
+
             <!-- User -->
 
-            <div class="flex items-center gap-5">
+            <div
+                class="
+                    flex
+                    items-center
+                    gap-5
+                "
+            >
+
+
+                <!-- User Information -->
 
                 <div class="text-right">
 
@@ -322,6 +433,7 @@ function renderHeader(title) {
                         ${fullName}
                     </h4>
 
+
                     <p
                         class="
                             text-sm
@@ -333,6 +445,9 @@ function renderHeader(title) {
 
                 </div>
 
+
+
+                <!-- User Avatar -->
 
                 <div
                     class="
@@ -351,9 +466,11 @@ function renderHeader(title) {
                 </div>
 
 
+
+                <!-- Logout -->
+
                 <button
                     id="logoutBtn"
-
                     class="
                         bg-red-500
                         hover:bg-red-600
@@ -363,10 +480,23 @@ function renderHeader(title) {
                         rounded-lg
                         font-medium
                         transition
+                        flex
+                        items-center
+                        gap-2
                     "
                 >
+
+                    <i
+                        class="
+                            fa-solid
+                            fa-right-from-bracket
+                        "
+                    ></i>
+
                     Logout
+
                 </button>
+
 
             </div>
 
@@ -375,8 +505,12 @@ function renderHeader(title) {
     `;
 
 
+    // LOGOUT EVENT
+
     const logoutBtn =
-        document.getElementById("logoutBtn");
+        document.getElementById(
+            "logoutBtn"
+        );
 
 
     if (logoutBtn) {
@@ -390,12 +524,16 @@ function renderHeader(title) {
 
 }
 
+// USER INITIAL
 
 function getInitial(name) {
 
     if (!name) {
+
         return "U";
+
     }
+
 
     return name
         .trim()
@@ -404,14 +542,21 @@ function getInitial(name) {
 
 }
 
+// FOOTER
+
 
 function renderFooter() {
 
     const footer =
-        document.getElementById("footer");
+        document.getElementById(
+            "footer"
+        );
+
 
     if (!footer) {
+
         return;
+
     }
 
 
