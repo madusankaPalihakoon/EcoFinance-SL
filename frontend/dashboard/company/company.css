@@ -1,118 +1,273 @@
 /* =========================================
-   Company Profile
-   ========================================= */
+   COMPANY PAGE
+========================================= */
 
+.company-details-card {
 
-/* Page */
+    background: #ffffff;
 
-body {
-  margin: 0;
+    border-radius: 16px;
+
+    padding: 30px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.06);
+
 }
 
 
-/* Cards */
+/* =========================================
+   COMPANY CARD HEADER
+========================================= */
 
-.card {
-  background: white;
+.company-card-header {
 
-  padding: 30px;
+    display: flex;
 
-  border-radius: 15px;
+    align-items: center;
 
-  box-shadow:
-    0 5px 20px rgba(0, 0, 0, 0.08);
+    gap: 14px;
+
+    padding-bottom: 24px;
+
+    margin-bottom: 28px;
+
+    border-bottom: 1px solid #e2e8f0;
+
 }
 
 
-/* Card titles */
+/* =========================================
+   SECTIONS
+========================================= */
 
-.card-title {
-  font-size: 22px;
+.company-section {
 
-  font-weight: 600;
+    padding: 24px;
 
-  margin-bottom: 25px;
+    margin-bottom: 24px;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
 }
 
 
-/* Form labels */
+/* =========================================
+   SECTION HEADINGS
+========================================= */
 
-.label {
-  display: block;
+.section-heading {
 
-  margin-bottom: 8px;
+    display: flex;
 
-  font-weight: 600;
+    align-items: center;
 
-  color: #475569;
+    gap: 10px;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    margin-bottom: 22px;
+
 }
 
 
-/* Form controls */
+/* BLUE */
+
+.blue-heading {
+
+    color: #2563eb;
+
+}
+
+
+/* GREEN */
+
+.green-heading {
+
+    color: #16a34a;
+
+}
+
+
+/* PURPLE */
+
+.purple-heading {
+
+    color: #9333ea;
+
+}
+
+
+/* =========================================
+   FORM LABEL
+========================================= */
+
+.form-label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #334155;
+
+}
+
+
+.form-label i {
+
+    margin-right: 7px;
+
+    color: #64748b;
+
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
 
 .input {
-  width: 100%;
 
-  padding: 12px;
+    width: 100%;
 
-  border: 1px solid #cbd5e1;
+    box-sizing: border-box;
 
-  border-radius: 10px;
+    padding: 12px 14px;
 
-  background: white;
+    border: 1px solid #cbd5e1;
 
-  box-sizing: border-box;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+
 }
 
-
-/* Textarea */
-
-textarea.input {
-  resize: vertical;
-
-  min-height: 100px;
-}
-
-
-/* Select */
-
-select.input {
-  background-color: white;
-}
-
-
-/* Focus */
 
 .input:focus {
-  outline: none;
 
-  border-color: #10b981;
+    outline: none;
 
-  box-shadow:
-    0 0 0 3px rgba(16, 185, 129, 0.2);
+    border-color: #10b981;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(16, 185, 129, 0.15);
+
 }
 
 
-/* Disabled */
+.input::placeholder {
+
+    color: #94a3b8;
+
+}
+
+
+textarea.input {
+
+    resize: vertical;
+
+}
+
+
+/* =========================================
+   DISABLED EMAIL
+========================================= */
 
 .input:disabled {
-  background-color: #f1f5f9;
 
-  color: #475569;
+    background: #f1f5f9;
 
-  cursor: not-allowed;
+    color: #64748b;
+
+    cursor: not-allowed;
+
 }
 
 
-/* Buttons */
+/* =========================================
+   BUTTONS
+========================================= */
 
-button {
-  transition:
-    background-color 0.2s ease,
-    transform 0.1s ease;
+.btn-primary {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 24px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    background: #16a34a;
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
 }
 
 
-button:active {
-  transform: scale(0.98);
+.btn-primary:hover {
+
+    background: #15803d;
+
+}
+
+
+.btn-secondary {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 24px;
+
+    border-radius: 10px;
+
+    border: 1px solid #cbd5e1;
+
+    background: white;
+
+    color: #334155;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.btn-secondary:hover {
+
+    background: #f8fafc;
+
 }

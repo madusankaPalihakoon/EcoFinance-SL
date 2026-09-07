@@ -3,297 +3,508 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+    <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Company Profile | EcoFinance SL</title>
-
-
-  <!-- Tailwind CSS -->
-
-  <script src="https://cdn.tailwindcss.com"></script>
+    <title>Company | EcoFinance SL</title>
 
 
-  <!-- Font Awesome -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
 
 
-  <!-- Company CSS -->
+    <!-- Common CSS -->
+    <link
+        rel="stylesheet"
+        href="/assets/css/common.css"
+    >
 
-  <link rel="stylesheet" href="company.css" />
+
+    <!-- Company CSS -->
+    <link
+        rel="stylesheet"
+        href="/dashboard/company/company.css"
+    >
 
 </head>
 
 
-<body class="bg-slate-100">
+<body class="bg-gray-100">
 
 
-  <!-- Main Layout -->
+    <!-- =========================================
+         PAGE
+    ========================================== -->
 
-  <div class="flex h-screen">
-
-
-    <!-- Dynamic Sidebar -->
-
-    <div id="sidebar" class="h-full flex-shrink-0"></div>
+    <div class="min-h-screen">
 
 
-    <!-- Right Side -->
+        <!-- =========================================
+             SIDEBAR
+        ========================================== -->
 
-    <div class="flex-1 flex flex-col overflow-hidden">
-
-
-      <!-- Dynamic Header -->
-
-      <div id="header"></div>
+        <div id="sidebar"></div>
 
 
-      <!-- Main Content -->
+        <!-- =========================================
+             MAIN AREA
+        ========================================== -->
 
-      <main class="flex-1 overflow-auto p-8">
-
-
-        <!-- Basic Information -->
-
-        <div class="card">
-
-          <h2 class="card-title">
-            Basic Information
-          </h2>
+        <div class="ml-64 min-h-screen">
 
 
-          <div class="grid md:grid-cols-2 gap-6">
+            <!-- =========================================
+                 HEADER
+            ========================================== -->
+
+            <div id="header"></div>
 
 
-            <!-- Company Name -->
+            <!-- =========================================
+                 CONTENT
+            ========================================== -->
+
+            <main class="p-8">
+
+    <!-- =========================================
+         PAGE HEADING - SEPARATE
+    ========================================== -->
+
+    <div class="mb-8">
+
+        <div class="flex items-center gap-4">
+
+            <div class="
+                w-14 h-14
+                rounded-2xl
+                bg-emerald-100
+                text-emerald-600
+                flex items-center justify-center
+            ">
+                <i class="fa-solid fa-building text-2xl"></i>
+            </div>
 
             <div>
 
-              <label for="company_name" class="label">
-                Company Name
-              </label>
+                <h1 class="
+                    text-3xl
+                    font-bold
+                    text-slate-900
+                ">
+                    Company
+                </h1>
 
-              <input id="company_name" class="input" type="text" />
-
-            </div>
-
-
-            <!-- Registration Number -->
-
-            <div>
-
-              <label for="registration_no" class="label">
-                Registration Number
-              </label>
-
-              <input id="registration_no" class="input" type="text" />
+                <p class="
+                    text-slate-500
+                    mt-1
+                ">
+                    Manage your company information and business details
+                </p>
 
             </div>
-
-
-            <!-- Business Sector -->
-
-            <div>
-
-              <label for="business_sector" class="label">
-                Business Sector
-              </label>
-
-              <input id="business_sector" class="input" type="text" />
-
-            </div>
-
-
-            <!-- Website -->
-
-            <div>
-
-              <label for="website" class="label">
-                Website
-              </label>
-
-              <input id="website" class="input" type="url" />
-
-            </div>
-
-          </div>
 
         </div>
-
-
-        <!-- Location -->
-
-        <div class="card mt-8">
-
-          <h2 class="card-title">
-            Location
-          </h2>
-
-
-          <div class="space-y-6">
-
-
-            <!-- Address -->
-
-            <div>
-
-              <label for="address" class="label">
-                Address
-              </label>
-
-              <textarea id="address" rows="4" class="input"></textarea>
-
-            </div>
-
-
-            <!-- Province / District -->
-
-            <div class="grid md:grid-cols-2 gap-6">
-
-
-              <!-- Province -->
-
-              <div>
-
-                <label for="province" class="label">
-                  Province
-                </label>
-
-                <select id="province" class="input">
-
-                  <option value="">
-                    Select Province
-                  </option>
-
-                </select>
-
-              </div>
-
-
-              <!-- District -->
-
-              <div>
-
-                <label for="district" class="label">
-                  District
-                </label>
-
-                <select id="district" class="input">
-
-                  <option value="">
-                    Select District
-                  </option>
-
-                </select>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- Contact -->
-
-        <div class="card mt-8">
-
-          <h2 class="card-title">
-            Contact
-          </h2>
-
-
-          <div class="grid md:grid-cols-2 gap-6">
-
-
-            <!-- Contact Number -->
-
-            <div>
-
-              <label for="contact_no" class="label">
-                Contact Number
-              </label>
-
-              <input id="contact_no" type="text" class="input" />
-
-            </div>
-
-
-            <!-- Email -->
-
-            <div>
-
-              <label for="email" class="label">
-                Email
-              </label>
-
-              <input id="email" type="email" class="input" disabled />
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- Buttons -->
-
-        <div class="mt-8 flex justify-end gap-4">
-
-
-          <!-- Cancel -->
-
-          <button id="cancelBtn" type="button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-3 rounded-lg">
-
-            Cancel
-
-          </button>
-
-
-          <!-- Save -->
-
-          <button id="saveBtn" type="button"
-            class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg">
-
-            <i class="fa-solid fa-floppy-disk mr-2"></i>
-
-            Save Changes
-
-          </button>
-
-        </div>
-
-
-      </main>
 
     </div>
 
-  </div>
+
+    <!-- =========================================
+         COMPANY DETAILS CARD
+    ========================================== -->
+
+    <div class="company-details-card">
+
+        <!-- CARD HEADING -->
+
+        <div class="company-card-header">
+
+            <div class="
+                w-11 h-11
+                rounded-xl
+                bg-blue-100
+                text-blue-600
+                flex items-center justify-center
+            ">
+                <i class="fa-solid fa-building text-lg"></i>
+            </div>
+
+            <div>
+
+                <h2 class="
+                    text-xl
+                    font-bold
+                    text-slate-800
+                ">
+                    Company Details
+                </h2>
+
+                <p class="text-sm text-slate-500">
+                    Enter and update your company details
+                </p>
+
+            </div>
+
+        </div>
 
 
-  <!-- Shared Layout -->
-
-  <script src="/dashboard/components/js/layout.js"></script>
+        <form id="companyForm">
 
 
-  <!-- Load Sidebar + Header -->
+            <!-- =================================
+                 BASIC INFORMATION
+            ================================== -->
 
-  <script>
+            <div class="company-section">
 
-    loadLayout(
-      "company",
-      "Company Profile"
-    );
+                <div class="section-heading blue-heading">
 
-  </script>
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <span>Basic Information</span>
+
+                </div>
 
 
-  <!-- Company JavaScript -->
+                <div class="grid md:grid-cols-2 gap-6">
 
-  <script src="company.js"></script>
+
+                    <!-- Company Name -->
+
+                    <div>
+
+                        <label for="company_name" class="form-label">
+
+                            <i class="fa-solid fa-building"></i>
+
+                            Company Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="company_name"
+                            name="company_name"
+                            class="input"
+                            placeholder="Enter company name"
+                        >
+
+                    </div>
+
+
+                    <!-- Registration -->
+
+                    <div>
+
+                        <label for="registration_no" class="form-label">
+
+                            <i class="fa-solid fa-id-card"></i>
+
+                            Registration Number
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="registration_no"
+                            name="registration_no"
+                            class="input"
+                            placeholder="Enter registration number"
+                        >
+
+                    </div>
+
+
+                    <!-- Business Sector -->
+
+                    <div>
+
+                        <label for="business_sector" class="form-label">
+
+                            <i class="fa-solid fa-industry"></i>
+
+                            Business Sector
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="business_sector"
+                            name="business_sector"
+                            class="input"
+                            placeholder="Enter business sector"
+                        >
+
+                    </div>
+
+
+                    <!-- Website -->
+
+                    <div>
+
+                        <label for="website" class="form-label">
+
+                            <i class="fa-solid fa-globe"></i>
+
+                            Website
+
+                        </label>
+
+                        <input
+                            type="url"
+                            id="website"
+                            name="website"
+                            class="input"
+                            placeholder="https://example.com"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 LOCATION
+            ================================== -->
+
+            <div class="company-section">
+
+                <div class="section-heading green-heading">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <span>Location</span>
+
+                </div>
+
+
+                <!-- Address -->
+
+                <div class="mb-6">
+
+                    <label for="address" class="form-label">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                        Address
+
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="4"
+                        class="input"
+                        placeholder="Enter company address"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="grid md:grid-cols-2 gap-6">
+
+
+                    <!-- Province -->
+
+                    <div>
+
+                        <label for="province" class="form-label">
+
+                            <i class="fa-solid fa-map"></i>
+
+                            Province
+
+                        </label>
+
+                        <select
+                            id="province"
+                            name="province"
+                            class="input"
+                        >
+
+                            <option value="">
+                                Select Province
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- District -->
+
+                    <div>
+
+                        <label for="district" class="form-label">
+
+                            <i class="fa-solid fa-location-crosshairs"></i>
+
+                            District
+
+                        </label>
+
+                        <select
+                            id="district"
+                            name="district"
+                            class="input"
+                        >
+
+                            <option value="">
+                                Select District
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 CONTACT INFORMATION
+            ================================== -->
+
+            <div class="company-section">
+
+                <div class="section-heading purple-heading">
+
+                    <i class="fa-solid fa-address-book"></i>
+
+                    <span>Contact Information</span>
+
+                </div>
+
+
+                <div class="grid md:grid-cols-2 gap-6">
+
+
+                    <!-- Contact Number -->
+
+                    <div>
+
+                        <label for="contact_no" class="form-label">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            Contact Number
+
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="contact_no"
+                            name="contact_no"
+                            class="input"
+                            placeholder="Enter contact number"
+                        >
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div>
+
+                        <label for="email" class="form-label">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            Email
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="input"
+                            disabled
+                            placeholder="Account email"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 BUTTONS
+            ================================== -->
+
+            <div class="
+                flex
+                justify-end
+                gap-4
+                pt-6
+                border-t
+                border-slate-200
+            ">
+
+                <button
+                    type="button"
+                    id="cancelBtn"
+                    class="btn-secondary"
+                >
+
+                    <i class="fa-solid fa-xmark mr-2"></i>
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    id="saveBtn"
+                    class="btn-primary"
+                >
+
+                    <i class="fa-solid fa-floppy-disk mr-2"></i>
+
+                    Save Company
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+
+            <!-- FOOTER -->
+
+            <div id="footer"></div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- COMPANY JAVASCRIPT -->
+
+    <script
+        type="module"
+        src="/dashboard/company/company.js"
+    ></script>
 
 
 </body>

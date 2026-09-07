@@ -1,557 +1,392 @@
-const API = "/api/profile";
+import api from "../../assets/js/api.js";
+import { initLayout } from "../../assets/js/layout.js";
 
-const token = localStorage.getItem("token");
 
-// Redirect if user is not logged in
-if (!token) {
-  window.location.href = "../login.html";
-}
+// =========================================
+// INITIALIZE LAYOUT
+// =========================================
 
-document.addEventListener("DOMContentLoaded", () => {
-
-  const updateProfileBtn =
-    document.getElementById("updateProfileBtn");
-
-  const changePasswordBtn =
-    document.getElementById("changePasswordBtn");
-
-  if (updateProfileBtn) {
-    updateProfileBtn.addEventListener(
-      "click",
-      updateProfile
-    );
-  }
-
-  if (changePasswordBtn) {
-    changePasswordBtn.addEventListener(
-      "click",
-      changePassword
-    );
-  }
-
-  loadProfile();
+initLayout({
+    title: "Profile"
 });
 
 
-// ================================
-// Load Profile
-// ================================
+// =========================================
+// PAGE LOAD
+// =========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    loadProfile();
+
+
+    const updateProfileBtn =
+        document.getElementById("updateProfileBtn");
+
+
+    const changePasswordBtn =
+        document.getElementById("changePasswordBtn");
+
+
+    if (updateProfileBtn) {
+
+        updateProfileBtn.addEventListener(
+            "click",
+            updateProfile
+        );
+
+    }
+
+
+    if (changePasswordBtn) {
+
+        changePasswordBtn.addEventListener(
+            "click",
+            changePassword
+        );
+
+    }
+
+});
+
+
+// =========================================
+// LOAD PROFILE
+// =========================================
 
 async function loadProfile() {
 
-  try {
+    try {
 
-    const response = await fetch(
-      API,
-      {
-        method: "GET",
+        const response =
+            await api.get("/profile/");
 
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
+
+        console.log(
+            "PROFILE API RESPONSE:",
+            response
+        );
+
+
+        if (!response.success) {
+
+            throw new Error(
+                response.message ||
+                "Unable to load profile"
+            );
+
         }
-      }
-    );
 
-    // Token expired / invalid
-    if (response.status === 401) {
 
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+        // =====================================
+        // USER DATA
+        // =====================================
 
-      window.location.href = "../login.html";
+        const user =
+            response.user;
 
-      return;
+
+        // =====================================
+        // COMPANY DATA
+        // =====================================
+
+        const company =
+            response.company;
+
+
+        if (!user) {
+
+            console.error(
+                "User data is missing from API response"
+            );
+
+            return;
+
+        }
+
+
+        // =====================================
+        // FULL NAME
+        // =====================================
+
+        const fullName =
+            user.full_name || "User";
+
+
+        // =====================================
+        // COMPANY NAME
+        // =====================================
+
+        const companyName =
+            company?.company_name ||
+            "Company Name";
+
+
+        console.log(
+            "FULL NAME:",
+            fullName
+        );
+
+
+        console.log(
+            "COMPANY NAME:",
+            companyName
+        );
+
+
+        // =====================================
+        // PROFILE CARD
+        // =====================================
+
+        const profileName =
+            document.getElementById(
+                "profileName"
+            );
+
+
+        const profileRole =
+            document.getElementById(
+                "profileRole"
+            );
+
+
+        const profileCompanyName =
+            document.getElementById(
+                "profileCompanyName"
+            );
+
+
+        const avatar =
+            document.getElementById(
+                "avatar"
+            );
+
+
+        // User name
+        if (profileName) {
+
+            profileName.textContent =
+                fullName;
+
+        }
+
+
+        // profileRole = COMPANY NAME
+        if (profileRole) {
+
+            profileRole.textContent =
+                companyName;
+
+        }
+
+
+        // Company information
+        if (profileCompanyName) {
+
+            profileCompanyName.textContent =
+                companyName;
+
+        }
+
+
+        // Avatar
+        if (avatar) {
+
+            avatar.textContent =
+                fullName
+                    .charAt(0)
+                    .toUpperCase();
+
+        }
+
+
+        // =====================================
+        // FORM FIELDS
+        // =====================================
+
+        const fullNameInput =
+            document.getElementById(
+                "fullName"
+            );
+
+
+        const companyNameInput =
+            document.getElementById(
+                "companyName"
+            );
+
+
+        const emailInput =
+            document.getElementById(
+                "email"
+            );
+
+
+        // Full Name
+        if (fullNameInput) {
+
+            fullNameInput.value =
+                fullName;
+
+        }
+
+
+        // Company Name
+        if (companyNameInput) {
+
+            companyNameInput.value =
+                companyName;
+
+        }
+
+
+        // Email
+        if (emailInput) {
+
+            emailInput.value =
+                user.email || "";
+
+        }
+
+
+        // =====================================
+        // HEADER
+        // =====================================
+
+        const headerUserName =
+            document.getElementById(
+                "headerUserName"
+            );
+
+
+        const headerCompanyName =
+            document.getElementById(
+                "headerCompanyName"
+            );
+
+
+        if (headerUserName) {
+
+            headerUserName.textContent =
+                fullName;
+
+        }
+
+
+        if (headerCompanyName) {
+
+            headerCompanyName.textContent =
+                companyName;
+
+        }
+
     }
 
-    if (!response.ok) {
+    catch (error) {
 
-      throw new Error(
-        `Profile API returned ${response.status}`
-      );
+        console.error(
+            "Profile loading error:",
+            error
+        );
+
     }
 
-    const user = await response.json();
-
-    console.log("Profile:", user);
-
-    // Get elements
-    const profileName =
-      document.getElementById("profileName");
-
-    const profileRole =
-      document.getElementById("profileRole");
-
-    const avatar =
-      document.getElementById("avatar");
-
-    const fullName =
-      document.getElementById("fullName");
-
-    const username =
-      document.getElementById("username");
-
-    const email =
-      document.getElementById("email");
-
-    const role =
-      document.getElementById("role");
-
-    const language =
-      document.getElementById("language");
-
-    const theme =
-      document.getElementById("theme");
-
-
-    // Profile name
-    if (profileName) {
-      profileName.textContent =
-        user.full_name || "";
-    }
-
-
-    // Profile role
-    if (profileRole) {
-      profileRole.textContent =
-        user.role || "";
-    }
-
-
-    // Avatar
-    if (avatar && user.full_name) {
-
-      avatar.textContent =
-        user.full_name
-          .charAt(0)
-          .toUpperCase();
-    }
-
-
-    // Full name
-    if (fullName) {
-      fullName.value =
-        user.full_name || "";
-    }
-
-
-    // Username
-    if (username) {
-      username.value =
-        user.username || "";
-    }
-
-
-    // Email
-    if (email) {
-      email.value =
-        user.email || "";
-    }
-
-
-    // Role
-    if (role) {
-      role.value =
-        user.role || "";
-    }
-
-
-    // Language
-    if (language) {
-      language.value =
-        user.language || "en";
-    }
-
-
-    // Theme
-    if (theme) {
-      theme.value =
-        user.theme || "light";
-    }
-
-
-  } catch (error) {
-
-    console.error(
-      "Failed to load profile:",
-      error
-    );
-
-    showMessage(
-      "Unable to load profile.",
-      "danger"
-    );
-  }
 }
 
 
-// ================================
-// Update Profile
-// ================================
+// =========================================
+// UPDATE PROFILE
+// =========================================
 
 async function updateProfile() {
 
-  const fullName =
-    document.getElementById("fullName");
+    try {
 
-  const email =
-    document.getElementById("email");
-
-  const language =
-    document.getElementById("language");
-
-  const theme =
-    document.getElementById("theme");
+        const fullName =
+            document.getElementById(
+                "fullName"
+            )?.value.trim();
 
 
-  const data = {
-
-    full_name:
-      fullName
-        ? fullName.value.trim()
-        : "",
-
-    email:
-      email
-        ? email.value.trim()
-        : "",
-
-    language:
-      language
-        ? language.value
-        : "en",
-
-    theme:
-      theme
-        ? theme.value
-        : "light"
-  };
+        const email =
+            document.getElementById(
+                "email"
+            )?.value.trim();
 
 
-  try {
+        if (!fullName) {
 
-    const response = await fetch(
-      API,
-      {
-        method: "PUT",
+            alert(
+                "Please enter your full name."
+            );
 
-        headers: {
-          "Content-Type":
-            "application/json",
+            return;
 
-          "Authorization":
-            `Bearer ${token}`
-        },
-
-        body:
-          JSON.stringify(data)
-      }
-    );
+        }
 
 
-    // Token expired / invalid
-    if (response.status === 401) {
-
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-
-      window.location.href =
-        "../login.html";
-
-      return;
-    }
+        const response =
+            await api.put(
+                "/profile/",
+                {
+                    full_name: fullName,
+                    email: email
+                }
+            );
 
 
-    const result =
-      await response.json();
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        result.message ||
-        "Unable to update profile."
-      );
-    }
-
-
-    // Update local user data
-    const storedUser =
-      localStorage.getItem("user");
-
-    if (storedUser) {
-
-      try {
-
-        const user =
-          JSON.parse(storedUser);
-
-        user.full_name =
-          data.full_name;
-
-        user.email =
-          data.email;
-
-        user.language =
-          data.language;
-
-        user.theme =
-          data.theme;
-
-        localStorage.setItem(
-          "user",
-          JSON.stringify(user)
+        console.log(
+            "UPDATE RESPONSE:",
+            response
         );
 
-      } catch (error) {
+
+        if (!response.success) {
+
+            throw new Error(
+                response.message ||
+                "Unable to update profile"
+            );
+
+        }
+
+
+        alert(
+            response.message ||
+            "Profile updated successfully."
+        );
+
+
+        // Reload data
+        await loadProfile();
+
+    }
+
+    catch (error) {
 
         console.error(
-          "Unable to update local user:",
-          error
+            "Update profile error:",
+            error
         );
-      }
+
+        alert(
+            error.message ||
+            "Unable to update profile."
+        );
+
     }
 
-
-    // Update profile display
-    const profileName =
-      document.getElementById(
-        "profileName"
-      );
-
-    if (profileName) {
-
-      profileName.textContent =
-        data.full_name;
-    }
-
-
-    const avatar =
-      document.getElementById("avatar");
-
-    if (avatar && data.full_name) {
-
-      avatar.textContent =
-        data.full_name
-          .charAt(0)
-          .toUpperCase();
-    }
-
-
-    showMessage(
-      result.message ||
-      "Profile updated successfully.",
-      "success"
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "Profile update failed:",
-      error
-    );
-
-    showMessage(
-      error.message ||
-      "Server connection failed.",
-      "danger"
-    );
-  }
 }
 
 
-// ================================
-// Change Password
-// ================================
+// =========================================
+// CHANGE PASSWORD
+// =========================================
 
 async function changePassword() {
 
-  const currentPassword =
-    document.getElementById(
-      "currentPassword"
+    alert(
+        "Password change API is not available in the Flask profile route yet."
     );
 
-  const newPassword =
-    document.getElementById(
-      "newPassword"
-    );
-
-  const confirmPassword =
-    document.getElementById(
-      "confirmPassword"
-    );
-
-
-  const currentPasswordValue =
-    currentPassword
-      ? currentPassword.value
-      : "";
-
-  const newPasswordValue =
-    newPassword
-      ? newPassword.value
-      : "";
-
-  const confirmPasswordValue =
-    confirmPassword
-      ? confirmPassword.value
-      : "";
-
-
-  // Validate
-  if (!currentPasswordValue) {
-
-    showMessage(
-      "Please enter your current password.",
-      "danger"
-    );
-
-    return;
-  }
-
-
-  if (!newPasswordValue) {
-
-    showMessage(
-      "Please enter a new password.",
-      "danger"
-    );
-
-    return;
-  }
-
-
-  if (
-    newPasswordValue !==
-    confirmPasswordValue
-  ) {
-
-    showMessage(
-      "Passwords do not match.",
-      "danger"
-    );
-
-    return;
-  }
-
-
-  try {
-
-    const response =
-      await fetch(
-        `${API}/change-password`,
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type":
-              "application/json",
-
-            "Authorization":
-              `Bearer ${token}`
-          },
-
-          body:
-            JSON.stringify({
-              current_password:
-                currentPasswordValue,
-
-              new_password:
-                newPasswordValue
-            })
-        }
-      );
-
-
-    // Token expired
-    if (response.status === 401) {
-
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-
-      window.location.href =
-        "../login.html";
-
-      return;
-    }
-
-
-    const result =
-      await response.json();
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        result.message ||
-        "Unable to change password."
-      );
-    }
-
-
-    showMessage(
-      result.message ||
-      "Password changed successfully.",
-      "success"
-    );
-
-
-    // Clear fields
-    if (currentPassword) {
-      currentPassword.value = "";
-    }
-
-    if (newPassword) {
-      newPassword.value = "";
-    }
-
-    if (confirmPassword) {
-      confirmPassword.value = "";
-    }
-
-
-  } catch (error) {
-
-    console.error(
-      "Password change failed:",
-      error
-    );
-
-    showMessage(
-      error.message ||
-      "Server connection failed.",
-      "danger"
-    );
-  }
-}
-
-
-// ================================
-// Message
-// ================================
-
-function showMessage(message, type) {
-
-  const messageElement =
-    document.getElementById("message");
-
-  if (!messageElement) {
-    return;
-  }
-
-
-  messageElement.innerHTML = `
-        <div class="alert alert-${type}">
-            ${message}
-        </div>
-    `;
-
-
-  // Automatically remove message
-  setTimeout(() => {
-
-    messageElement.innerHTML = "";
-
-  }, 5000);
 }

@@ -1,251 +1,303 @@
-const API =
-  `${window.location.origin}/api/carbon/`;
+import api from "../../assets/js/api.js";
+import { initLayout } from "../../assets/js/layout.js";
 
-const token =
-  localStorage.getItem("token");
+initLayout({
+    title: "Business Data"
+});
 
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+/* =========================================
+   SAVE BUTTON
+========================================= */
 
-    if (!token) {
+const saveBtn =
+    document.getElementById("saveBtn");
 
-      window.location.href =
-        "/login.html";
 
-      return;
-    }
-
-    document
-      .getElementById("calculateBtn")
-      ?.addEventListener(
-        "click",
-        calculateCarbon
-      );
-
-    document
-      .getElementById("saveBtn")
-      ?.addEventListener(
-        "click",
-        saveBusinessData
-      );
-
-  }
+saveBtn.addEventListener(
+    "click",
+    saveBusinessData
 );
 
 
-function numberValue(id) {
+/* =========================================
+   DEFAULT VALUES
+========================================= */
 
-  const value =
-    Number(
-      document
-        .getElementById(id)
-        ?.value || 0
-    );
+setDefaultValues();
 
-  return Number.isFinite(value) &&
-    value >= 0
-    ? value
-    : 0;
+
+function setDefaultValues() {
+
+    const today = new Date();
+
+
+    document.getElementById(
+        "reporting_year"
+    ).value = today.getFullYear();
+
+
+    document.getElementById(
+        "reporting_month"
+    ).value = today.getMonth() + 1;
+
 }
 
+
+/* =========================================
+   GET FORM DATA
+========================================= */
 
 function getFormData() {
 
-  return {
+    return {
 
-    reporting_year:
-      Number(
-        document
-          .getElementById("reportingYear")
-          ?.value ||
-        new Date().getFullYear()
-      ),
+        reporting_year:
+            Number(
+                document.getElementById(
+                    "reporting_year"
+                ).value
+            ),
 
-    reporting_month:
-      Number(
-        document
-          .getElementById("reportingMonth")
-          ?.value ||
-        new Date().getMonth() + 1
-      ),
 
-    electricity_kwh:
-      numberValue("electricity"),
+        reporting_month:
+            Number(
+                document.getElementById(
+                    "reporting_month"
+                ).value
+            ),
 
-    fuel_liters:
-      numberValue("fuel"),
 
-    transport_distance:
-      numberValue("transport"),
+        grid_electricity_kwh:
+            Number(
+                document.getElementById(
+                    "grid_electricity_kwh"
+                ).value || 0
+            ),
 
-    waste_kg:
-      numberValue("waste"),
 
-  };
+        renewable_electricity_kwh:
+            Number(
+                document.getElementById(
+                    "renewable_electricity_kwh"
+                ).value || 0
+            ),
+
+
+        diesel_liters:
+            Number(
+                document.getElementById(
+                    "diesel_liters"
+                ).value || 0
+            ),
+
+
+        petrol_liters:
+            Number(
+                document.getElementById(
+                    "petrol_liters"
+                ).value || 0
+            ),
+
+
+        lpg_kg:
+            Number(
+                document.getElementById(
+                    "lpg_kg"
+                ).value || 0
+            ),
+
+
+        natural_gas_m3:
+            Number(
+                document.getElementById(
+                    "natural_gas_m3"
+                ).value || 0
+            ),
+
+
+        business_travel_km:
+            Number(
+                document.getElementById(
+                    "business_travel_km"
+                ).value || 0
+            ),
+
+
+        employee_travel_km:
+            Number(
+                document.getElementById(
+                    "employee_travel_km"
+                ).value || 0
+            ),
+
+
+        freight_transport_km:
+            Number(
+                document.getElementById(
+                    "freight_transport_km"
+                ).value || 0
+            ),
+
+
+        general_waste_kg:
+            Number(
+                document.getElementById(
+                    "general_waste_kg"
+                ).value || 0
+            ),
+
+
+        recycled_waste_kg:
+            Number(
+                document.getElementById(
+                    "recycled_waste_kg"
+                ).value || 0
+            ),
+
+
+        hazardous_waste_kg:
+            Number(
+                document.getElementById(
+                    "hazardous_waste_kg"
+                ).value || 0
+            )
+
+    };
+
 }
 
 
-async function calculateCarbon() {
+/* =========================================
+   VALIDATION
+========================================= */
 
-  try {
+function validate(data) {
 
-    const response =
-      await fetch(
-        `${window.location.origin}/api/carbon/calculate`,
-        {
-          method: "POST",
+    if (!data.reporting_year) {
 
-          headers: {
-            "Content-Type":
-              "application/json",
+        alert(
+            "Reporting year is required."
+        );
 
-            Authorization:
-              "Bearer " + token,
-          },
-
-          body:
-            JSON.stringify(
-              getFormData()
-            ),
-        }
-      );
-
-
-    const result =
-      await response.json();
-
-
-    if (
-      !response.ok ||
-      !result.success
-    ) {
-
-      throw new Error(
-        result.message ||
-        "Unable to calculate carbon."
-      );
+        return false;
 
     }
 
 
-    document
-      .getElementById(
-        "resultCard"
-      )
-      ?.classList
-      .remove("hidden");
+    if (!data.reporting_month) {
+
+        alert(
+            "Reporting month is required."
+        );
+
+        return false;
+
+    }
 
 
-    document
-      .getElementById(
-        "totalEmission"
-      )
-      .textContent =
-      Number(
-        result.data.total_emission || 0
-      ).toFixed(2)
-      + " kg CO₂";
-
-
-  } catch (error) {
-
-    console.error(
-      "Carbon calculation error:",
-      error
-    );
-
-    alert(
-      error.message ||
-      "Server connection failed."
-    );
-
-  }
+    return true;
 
 }
 
+
+/* =========================================
+   SAVE BUSINESS DATA
+========================================= */
 
 async function saveBusinessData() {
 
-  try {
-
-    const response =
-      await fetch(
-        API,
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type":
-              "application/json",
-
-            Authorization:
-              "Bearer " + token,
-          },
-
-          body:
-            JSON.stringify(
-              getFormData()
-            ),
-        }
-      );
+    const data =
+        getFormData();
 
 
-    const result =
-      await response.json();
-
-
-    if (
-      !response.ok ||
-      !result.success
-    ) {
-
-      throw new Error(
-        result.message ||
-        "Unable to save business data."
-      );
-
+    if (!validate(data)) {
+        return;
     }
 
 
-    document
-      .getElementById(
-        "resultCard"
-      )
-      ?.classList
-      .remove("hidden");
+    try {
+
+        saveBtn.disabled = true;
 
 
-    document
-      .getElementById(
-        "totalEmission"
-      )
-      .textContent =
-      Number(
-        result.data.total_emission || 0
-      ).toFixed(2)
-      + " kg CO₂";
+        saveBtn.innerHTML = `
+            <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+            Saving...
+        `;
 
 
-    alert(
-      result.message ||
-      "Business data saved successfully."
-    );
+        const response =
+            await api.post(
+                "/business/",
+                data
+            );
 
 
-  } catch (error) {
+        if (!response.success) {
 
-    console.error(
-      "Business data error:",
-      error
-    );
+            throw new Error(
+                response.message ||
+                "Unable to save business data."
+            );
 
-    alert(
-      error.message ||
-      "Server connection failed."
-    );
+        }
 
-  }
+
+        alert(
+            "Business data saved successfully."
+        );
+
+
+        updateSummary(
+            response.data
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Business data error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Unable to save business data."
+        );
+
+
+    } finally {
+
+        saveBtn.disabled = false;
+
+
+        saveBtn.innerHTML = `
+            <i class="fa-solid fa-floppy-disk mr-2"></i>
+            Save Business Data
+        `;
+
+    }
+
+}
+
+
+/* =========================================
+   UPDATE CARBON SUMMARY
+========================================= */
+
+function updateSummary(data) {
+
+    const totalCarbon =
+        Number(
+            data?.total_carbon || 0
+        );
+
+
+    document.getElementById(
+        "totalCarbon"
+    ).textContent =
+        totalCarbon.toFixed(2);
 
 }

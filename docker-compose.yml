@@ -6,10 +6,10 @@ services:
     restart: unless-stopped
 
     environment:
-      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MARIADB_DATABASE: ${DB_NAME}
-      MARIADB_USER: ${DB_USER}
-      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${TEST_DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${TEST_DB_NAME}
+      MARIADB_USER: ${TEST_DB_USER}
+      MARIADB_PASSWORD: ${TEST_DB_PASSWORD}
 
     volumes:
       - db_data:/var/lib/mysql
@@ -43,11 +43,11 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: 3306
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      SECRET_KEY: ${SECRET_KEY}
-      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      DB_NAME: ${TEST_DB_NAME}
+      DB_USER: ${TEST_DB_USER}
+      DB_PASSWORD: ${TEST_DB_PASSWORD}
+      SECRET_KEY: ${TEST_SECRET_KEY}
+      JWT_SECRET_KEY: ${TEST_JWT_SECRET_KEY}
 
     depends_on:
       db:
@@ -71,7 +71,7 @@ services:
 
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./frontend-test:/srv/frontend:ro
+      - ./frontend:/srv/frontend:ro
       - caddy_data:/data
       - caddy_config:/config
 
