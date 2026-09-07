@@ -1,80 +1,438 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
 
-    <title>ESG History</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>ESG History | EcoFinance SL</title>
+
+
+    <!-- Tailwind -->
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="../../assets/css/common.css" />
 
-    <link rel="stylesheet" href="esg.css" />
-  </head>
+    <!-- Font Awesome -->
 
-  <body class="bg-gray-100">
-    <div class="flex min-h-screen">
-      <div id="sidebar"></div>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
-      <div class="flex-1">
+
+    <!-- Common CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/common.css"
+    >
+
+
+    <!-- ESG CSS -->
+
+    <link
+        rel="stylesheet"
+        href="esg.css"
+    >
+
+</head>
+
+
+<body class="bg-slate-100">
+
+
+    <!-- SIDEBAR -->
+
+    <div id="sidebar"></div>
+
+
+    <!-- MAIN -->
+
+    <div class="ml-64 min-h-screen flex flex-col">
+
+
+        <!-- HEADER -->
+
         <div id="header"></div>
 
-        <main class="p-8">
-          <div class="flex justify-between items-center mb-6">
-            <div>
-              <h1 class="text-3xl font-bold">ESG History</h1>
 
-              <p class="text-gray-500">Previous ESG assessments</p>
+        <!-- CONTENT -->
+
+        <main class="flex-1 p-8">
+
+
+            <!-- PAGE HEADER -->
+
+            <div
+                class="
+                    flex
+                    justify-between
+                    items-center
+                    mb-8
+                "
+            >
+
+                <div>
+
+                    <div
+                        class="
+                            flex
+                            items-center
+                            gap-3
+                            mb-2
+                        "
+                    >
+
+                        <div
+                            class="
+                                w-11
+                                h-11
+                                rounded-xl
+                                bg-emerald-100
+                                text-emerald-600
+                                flex
+                                items-center
+                                justify-center
+                            "
+                        >
+
+                            <i
+                                class="
+                                    fa-solid
+                                    fa-clock-rotate-left
+                                    text-xl
+                                "
+                            ></i>
+
+                        </div>
+
+
+                        <h1
+                            class="
+                                text-3xl
+                                font-bold
+                                text-slate-900
+                            "
+                        >
+                            ESG History
+                        </h1>
+
+                    </div>
+
+
+                    <p class="text-gray-500">
+
+                        View previous ESG assessments.
+
+                    </p>
+
+                </div>
+
+
+                <!-- NEW ASSESSMENT -->
+
+                <a
+                    href="new.html"
+                    class="
+                        btn-primary
+                        flex
+                        items-center
+                        gap-2
+                    "
+                >
+
+                    <i
+                        class="
+                            fa-solid
+                            fa-plus
+                        "
+                    ></i>
+
+                    New Assessment
+
+                </a>
+
             </div>
 
-            <a href="new.html" class="btn-primary"> + New Assessment </a>
-          </div>
 
-          <div class="card overflow-x-auto">
-            <table class="w-full">
-              <thead>
-                <tr class="border-b">
-                  <th class="p-3 text-left">Date</th>
+            <!-- HISTORY TABLE -->
 
-                  <th class="p-3 text-center">Environmental</th>
+            <div
+                class="
+                    card
+                    overflow-x-auto
+                "
+            >
 
-                  <th class="p-3 text-center">Social</th>
+                <table class="w-full">
 
-                  <th class="p-3 text-center">Governance</th>
+                    <thead>
 
-                  <th class="p-3 text-center">Overall</th>
+                        <tr
+                            class="
+                                border-b
+                                bg-slate-50
+                            "
+                        >
 
-                  <th class="p-3 text-center">Status</th>
+                            <th
+                                class="
+                                    p-4
+                                    text-left
+                                    font-semibold
+                                "
+                            >
+                                Date
+                            </th>
 
-                  <th class="p-3 text-center">Action</th>
-                </tr>
-              </thead>
 
-              <tbody id="historyTable"></tbody>
-            </table>
-          </div>
-          <div
-            id="detailModal"
-            class="fixed inset-0 bg-black/40 hidden items-center justify-center"
-          >
-            <div class="bg-white rounded-xl w-full max-w-2xl p-6">
-              <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold">ESG Assessment</h2>
+                            <th
+                                class="
+                                    p-4
+                                    text-center
+                                    font-semibold
+                                "
+                            >
+                                Environmental
+                            </th>
 
-                <button onclick="closeModal()">✕</button>
-              </div>
 
-              <div id="modalBody"></div>
+                            <th
+                                class="
+                                    p-4
+                                    text-center
+                                    font-semibold
+                                "
+                            >
+                                Social
+                            </th>
+
+
+                            <th
+                                class="
+                                    p-4
+                                    text-center
+                                    font-semibold
+                                "
+                            >
+                                Governance
+                            </th>
+
+
+                            <th
+                                class="
+                                    p-4
+                                    text-center
+                                    font-semibold
+                                "
+                            >
+                                Overall
+                            </th>
+
+
+                            <th
+                                class="
+                                    p-4
+                                    text-center
+                                    font-semibold
+                                "
+                            >
+                                Status
+                            </th>
+
+
+                            <th
+                                class="
+                                    p-4
+                                    text-center
+                                    font-semibold
+                                "
+                            >
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="historyTable">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="
+                                    text-center
+                                    p-8
+                                    text-gray-500
+                                "
+                            >
+
+                                <i
+                                    class="
+                                        fa-solid
+                                        fa-spinner
+                                        fa-spin
+                                        mr-2
+                                    "
+                                ></i>
+
+                                Loading history...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
             </div>
-          </div>
+
+
+            <!-- =================================
+                 DETAIL MODAL
+            ================================== -->
+
+            <div
+                id="detailModal"
+                class="
+                    fixed
+                    inset-0
+                    bg-black/50
+                    hidden
+                    items-center
+                    justify-center
+                    z-50
+                    p-4
+                "
+            >
+
+                <div
+                    class="
+                        bg-white
+                        rounded-2xl
+                        w-full
+                        max-w-2xl
+                        max-h-[90vh]
+                        overflow-y-auto
+                        shadow-2xl
+                    "
+                >
+
+                    <!-- MODAL HEADER -->
+
+                    <div
+                        class="
+                            flex
+                            justify-between
+                            items-center
+                            p-6
+                            border-b
+                        "
+                    >
+
+                        <div
+                            class="
+                                flex
+                                items-center
+                                gap-3
+                            "
+                        >
+
+                            <div
+                                class="
+                                    w-10
+                                    h-10
+                                    rounded-lg
+                                    bg-emerald-100
+                                    text-emerald-600
+                                    flex
+                                    items-center
+                                    justify-center
+                                "
+                            >
+
+                                <i
+                                    class="
+                                        fa-solid
+                                        fa-seedling
+                                    "
+                                ></i>
+
+                            </div>
+
+
+                            <h2
+                                class="
+                                    text-2xl
+                                    font-bold
+                                "
+                            >
+                                ESG Assessment
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            onclick="closeModal()"
+                            class="
+                                w-9
+                                h-9
+                                rounded-lg
+                                hover:bg-gray-100
+                                text-gray-500
+                            "
+                        >
+
+                            <i
+                                class="
+                                    fa-solid
+                                    fa-xmark
+                                "
+                            ></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- MODAL BODY -->
+
+                    <div
+                        id="modalBody"
+                        class="p-6"
+                    ></div>
+
+                </div>
+
+            </div>
+
         </main>
 
+
+        <!-- FOOTER -->
+
         <div id="footer"></div>
-      </div>
+
     </div>
 
-    <script type="module" src="history.js"></script>
-  </body>
+
+    <!-- HISTORY JS -->
+
+    <script
+        type="module"
+        src="history.js"
+    ></script>
+
+</body>
+
 </html>

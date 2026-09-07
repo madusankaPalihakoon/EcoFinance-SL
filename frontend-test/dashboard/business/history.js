@@ -1,105 +1,216 @@
 import api from "../../assets/js/api.js";
 import { initLayout } from "../../assets/js/layout.js";
 
-await initLayout({
-  title: "Business History",
+/* =========================================
+   INITIALIZE LAYOUT
+========================================= */
 
-  basePath: "../../",
+initLayout({
+    title: "Business History"
 });
+
+/* =========================================
+   LOAD HISTORY
+========================================= */
 
 loadHistory();
 
+/* =========================================
+   LOAD RECORDS
+========================================= */
+
 async function loadHistory() {
-  try {
-    const response = await api.get("/business/");
 
-    if (!response.success) {
-      throw new Error("Unable to load records.");
+    try {
+
+        const response = await api.get("/business/");
+
+        if (!response.success) {
+            throw new Error(
+                response.message || "Unable to load records."
+            );
+        }
+
+        renderTable(response.data || []);
+
+    } catch (error) {
+
+        console.error(
+            "History loading error:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "Unable to load records."
+        );
     }
-
-    renderTable(response.data);
-  } catch (error) {
-    alert(error.message);
-  }
 }
+
+/* =========================================
+   RENDER TABLE
+========================================= */
 
 function renderTable(records) {
-  const table = document.getElementById("historyTable");
 
-  table.innerHTML = "";
+    const table =
+        document.getElementById("historyTable");
 
-  records.forEach((record) => {
-    table.innerHTML += `
+    const emptyHistory =
+        document.getElementById("emptyHistory");
 
-        <tr class="border-b hover:bg-gray-50">
+    if (!table || !emptyHistory) {
+        console.error(
+            "History table elements not found."
+        );
+        return;
+    }
 
-            <td class="p-3">
+    table.innerHTML = "";
 
-                ${record.reporting_year}
+    if (!records.length) {
 
-            </td>
+        emptyHistory.classList.remove("hidden");
 
-            <td class="p-3">
+        return;
+    }
 
-                ${monthName(record.reporting_month)}
+    emptyHistory.classList.add("hidden");
 
-            </td>
+    records.forEach((record) => {
 
-            <td class="text-right p-3">
+        const totalCarbon =
+            Number(record.total_carbon || 0);
 
-                ${record.grid_electricity_kwh}
+        table.innerHTML += `
 
-            </td>
+            <tr class="
+                border-b
+                border-slate-100
+                hover:bg-slate-50
+                transition
+            ">
 
-            <td class="text-right p-3">
+                <td class="history-td">
 
-                ${record.diesel_liters}
+                    <div class="flex items-center gap-2">
 
-            </td>
+                        <i class="
+                            fa-solid
+                            fa-calendar
+                            text-slate-400
+                        "></i>
 
-            <td class="text-right p-3 font-semibold">
+                        ${record.reporting_year ?? "-"}
 
-                ${record.total_carbon.toFixed(2)}
+                    </div>
 
-            </td>
+                </td>
 
-            <td class="text-center p-3">
+                <td class="history-td">
+                    ${monthName(record.reporting_month)}
+                </td>
 
-                <button
-                    class="text-blue-600 hover:underline"
-                    onclick="viewRecord(${record.id})">
+                <td class="
+                    history-td
+                    text-right
+                ">
+                    ${Number(
+                        record.grid_electricity_kwh || 0
+                    ).toFixed(2)}
+                </td>
 
-                    View
+                <td class="
+                    history-td
+                    text-right
+                ">
+                    ${Number(
+                        record.diesel_liters || 0
+                    ).toFixed(2)}
+                </td>
 
-                </button>
+                <td class="
+                    history-td
+                    text-right
+                    font-semibold
+                    text-emerald-600
+                ">
 
-            </td>
+                    ${totalCarbon.toFixed(2)}
 
-        </tr>
+                    <span class="
+                        text-xs
+                        text-slate-400
+                        font-normal
+                    ">
+                        tCO₂e
+                    </span>
+
+                </td>
+
+                <td class="
+                    history-td
+                    text-center
+                ">
+
+                    <button
+                        type="button"
+                        class="view-button"
+                        onclick="viewRecord(${record.id})"
+                    >
+
+                        <i class="
+                            fa-solid
+                            fa-eye
+                            mr-1
+                        "></i>
+
+                        View
+
+                    </button>
+
+                </td>
+
+            </tr>
 
         `;
-  });
+    });
 }
+
+/* =========================================
+   MONTH NAME
+========================================= */
 
 function monthName(month) {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
-  return months[month - 1];
+    const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+
+    return months[
+        Number(month) - 1
+    ] || "-";
 }
 
+/* =========================================
+   VIEW RECORD
+========================================= */
+
 window.viewRecord = function (id) {
-  alert("Record ID : " + id);
+
+    alert(
+        "Business record details will be displayed here."
+    );
+
 };

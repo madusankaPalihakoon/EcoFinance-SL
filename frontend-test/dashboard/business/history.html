@@ -1,64 +1,314 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Business History</title>
+<head>
 
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Business History | EcoFinance SL</title>
+
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="business.css" />
-  </head>
 
-  <body class="bg-gray-100">
-    <div class="flex min-h-screen">
-      <div id="sidebar"></div>
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
 
-      <div class="flex-1">
-        <div id="header"></div>
 
-        <main class="p-8">
-          <div class="flex justify-between items-center mb-6">
-            <div>
-              <h1 class="text-3xl font-bold">Business History</h1>
+    <!-- Common CSS -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/common.css"
+    >
 
-              <p class="text-gray-500">View submitted business records.</p>
-            </div>
 
-            <a href="new.html" class="btn-primary"> + New Business Data </a>
-          </div>
+    <!-- Business CSS -->
+    <link
+        rel="stylesheet"
+        href="business.css"
+    >
 
-          <div class="card">
-            <div class="overflow-x-auto">
-              <table class="w-full">
-                <thead>
-                  <tr class="border-b">
-                    <th class="text-left p-3">Year</th>
+</head>
 
-                    <th class="text-left p-3">Month</th>
 
-                    <th class="text-right p-3">Grid (kWh)</th>
+<body class="bg-gray-100">
 
-                    <th class="text-right p-3">Diesel (L)</th>
 
-                    <th class="text-right p-3">Carbon</th>
+    <div class="min-h-screen">
 
-                    <th class="text-center p-3">Action</th>
-                  </tr>
-                </thead>
 
-                <tbody id="historyTable"></tbody>
-              </table>
-            </div>
-          </div>
-        </main>
+        <!-- SIDEBAR -->
 
-        <div id="footer"></div>
-      </div>
+        <div id="sidebar"></div>
+
+
+        <!-- MAIN AREA -->
+
+        <div class="ml-64 min-h-screen">
+
+
+            <!-- HEADER -->
+
+            <div id="header"></div>
+
+
+            <!-- CONTENT -->
+
+            <main class="p-8">
+
+
+                <!-- =================================
+                     PAGE HEADING
+                ================================== -->
+
+                <div class="
+                    flex
+                    justify-between
+                    items-center
+                    mb-8
+                ">
+
+
+                    <div class="flex items-center gap-4">
+
+
+                        <div class="
+                            w-14
+                            h-14
+                            rounded-2xl
+                            bg-blue-100
+                            text-blue-600
+                            flex
+                            items-center
+                            justify-center
+                        ">
+
+                            <i class="
+                                fa-solid
+                                fa-clock-rotate-left
+                                text-2xl
+                            "></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h1 class="
+                                text-3xl
+                                font-bold
+                                text-slate-900
+                            ">
+                                Business History
+                            </h1>
+
+                            <p class="text-slate-500 mt-1">
+                                View submitted business records
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- NEW BUTTON -->
+
+                    <a
+                        href="new.html"
+                        class="btn-primary"
+                    >
+
+                        <i class="fa-solid fa-plus mr-2"></i>
+
+                        New Business Data
+
+                    </a>
+
+
+                </div>
+
+
+                <!-- =================================
+                     HISTORY CARD
+                ================================== -->
+
+                <div class="business-history-card">
+
+
+                    <!-- CARD HEADER -->
+
+                    <div class="
+                        flex
+                        items-center
+                        gap-3
+                        mb-6
+                    ">
+
+
+                        <div class="
+                            w-11
+                            h-11
+                            rounded-xl
+                            bg-blue-100
+                            text-blue-600
+                            flex
+                            items-center
+                            justify-center
+                        ">
+
+                            <i class="
+                                fa-solid
+                                fa-table-list
+                            "></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2 class="
+                                text-xl
+                                font-bold
+                                text-slate-800
+                            ">
+                                Submitted Records
+                            </h2>
+
+                            <p class="text-sm text-slate-500">
+                                Monthly business data records
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- TABLE -->
+
+                    <div class="overflow-x-auto">
+
+
+                        <table class="w-full">
+
+
+                            <thead>
+
+                                <tr class="
+                                    border-b
+                                    border-slate-200
+                                    bg-slate-50
+                                ">
+
+
+                                    <th class="history-th text-left">
+                                        Year
+                                    </th>
+
+
+                                    <th class="history-th text-left">
+                                        Month
+                                    </th>
+
+
+                                    <th class="history-th text-right">
+                                        Grid (kWh)
+                                    </th>
+
+
+                                    <th class="history-th text-right">
+                                        Diesel (L)
+                                    </th>
+
+
+                                    <th class="history-th text-right">
+                                        Carbon
+                                    </th>
+
+
+                                    <th class="history-th text-center">
+                                        Action
+                                    </th>
+
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody
+                                id="historyTable"
+                            >
+
+                                <!-- JS inserts records -->
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                    <!-- EMPTY MESSAGE -->
+
+                    <div
+                        id="emptyHistory"
+                        class="
+                            hidden
+                            text-center
+                            py-12
+                            text-slate-500
+                        "
+                    >
+
+                        <i class="
+                            fa-solid
+                            fa-folder-open
+                            text-4xl
+                            mb-3
+                        "></i>
+
+                        <p>
+                            No business records found.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </main>
+
+
+            <!-- FOOTER -->
+
+            <div id="footer"></div>
+
+
+        </div>
+
     </div>
 
-    <script type="module" src="history.js"></script>
-  </body>
+
+    <script
+        type="module"
+        src="history.js"
+    ></script>
+
+
+</body>
+
 </html>

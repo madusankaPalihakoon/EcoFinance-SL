@@ -1,233 +1,814 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Business Data</title>
+<head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Business Data | EcoFinance SL</title>
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="../../assets/css/common.css" />
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
 
-    <link rel="stylesheet" href="business.css" />
-  </head>
+    <!-- Common CSS -->
+    <link
+        rel="stylesheet"
+        href="../../assets/css/common.css"
+    >
 
-  <body class="bg-gray-100">
-    <div class="flex min-h-screen">
-      <div id="sidebar"></div>
+    <!-- Business CSS -->
+    <link
+        rel="stylesheet"
+        href="business.css"
+    >
 
-      <div class="flex-1">
-        <div id="header"></div>
+</head>
 
-        <main class="p-8">
-          <div class="flex justify-between items-center mb-6">
-            <div>
-              <h1 class="text-3xl font-bold">Business Data Entry</h1>
-              <p class="text-gray-500">Enter monthly operational data.</p>
-            </div>
 
-            <div class="flex gap-3">
-              <a
-                href="history.html"
-                class="px-5 py-3 rounded-lg border border-gray-300 bg-white hover:bg-gray-100"
-              >
-                📋 History
-              </a>
+<body class="bg-gray-100">
 
-              <button id="saveBtn" class="btn-primary">
-                💾 Save Business Data
-              </button>
-            </div>
-          </div>
+    <!-- PAGE -->
+    <div class="min-h-screen">
 
-          <div class="grid lg:grid-cols-3 gap-6">
-            <!-- LEFT -->
+        <!-- SIDEBAR -->
+        <div id="sidebar"></div>
 
-            <div class="lg:col-span-2 space-y-6">
-              <!-- Reporting -->
 
-              <div class="card">
-                <h2 class="section-title">Reporting Period</h2>
+        <!-- MAIN AREA -->
+        <div class="ml-64 min-h-screen">
 
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label>Year</label>
+            <!-- HEADER -->
+            <div id="header"></div>
 
-                    <input id="reporting_year" type="number" class="input" />
-                  </div>
 
-                  <div>
-                    <label>Month</label>
+            <!-- MAIN CONTENT -->
+            <main class="p-8">
 
-                    <select id="reporting_month" class="input">
-                      <option value="1">January</option>
-                      <option value="2">February</option>
-                      <option value="3">March</option>
-                      <option value="4">April</option>
-                      <option value="5">May</option>
-                      <option value="6">June</option>
-                      <option value="7">July</option>
-                      <option value="8">August</option>
-                      <option value="9">September</option>
-                      <option value="10">October</option>
-                      <option value="11">November</option>
-                      <option value="12">December</option>
-                    </select>
-                  </div>
+                <!-- =========================================
+                     PAGE HEADER
+                ========================================== -->
+
+                <div class="business-page-header">
+
+                    <!-- TITLE -->
+                    <div class="business-page-title">
+
+                        <div class="business-page-icon">
+
+                            <i class="fa-solid fa-industry"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h1>
+                                Business Data Entry
+                            </h1>
+
+                            <p>
+                                Enter your monthly business activity data
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="business-page-actions">
+
+                        <a
+                            href="history.html"
+                            class="btn-history"
+                        >
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            History
+                        </a>
+
+
+                        <button
+                            type="button"
+                            id="saveBtn"
+                            class="btn-primary"
+                        >
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Business Data
+                        </button>
+
+                    </div>
+
                 </div>
-              </div>
 
-              <!-- Electricity -->
 
-              <div class="card">
-                <h2 class="section-title">Electricity</h2>
+                <!-- =========================================
+                     TOP TWO COLUMN LAYOUT
+                ========================================== -->
 
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label>Grid Electricity (kWh)</label>
+                <div class="business-form-grid">
 
-                    <input
-                      id="grid_electricity_kwh"
-                      type="number"
-                      class="input"
-                    />
-                  </div>
 
-                  <div>
-                    <label>Renewable Electricity (kWh)</label>
+                    <!-- =====================================
+                         LEFT COLUMN
+                    ====================================== -->
 
-                    <input
-                      id="renewable_electricity_kwh"
-                      type="number"
-                      class="input"
-                    />
-                  </div>
+                    <div class="business-column">
+
+
+                        <!-- =================================
+                             REPORTING PERIOD
+                        ================================== -->
+
+                        <div class="business-card">
+
+                            <div class="business-section-header blue-section">
+
+                                <div class="section-icon">
+
+                                    <i class="fa-solid fa-calendar-days"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2>
+                                        Reporting Period
+                                    </h2>
+
+                                    <p>
+                                        Select the reporting month and year
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="business-fields">
+
+                                <!-- YEAR -->
+
+                                <div>
+
+                                    <label
+                                        for="reporting_year"
+                                        class="business-label"
+                                    >
+                                        Year
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="reporting_year"
+                                        class="input"
+                                        min="2000"
+                                        max="2100"
+                                    >
+
+                                </div>
+
+
+                                <!-- MONTH -->
+
+                                <div>
+
+                                    <label
+                                        for="reporting_month"
+                                        class="business-label"
+                                    >
+                                        Month
+                                    </label>
+
+                                    <select
+                                        id="reporting_month"
+                                        class="input"
+                                    >
+
+                                        <option value="1">
+                                            January
+                                        </option>
+
+                                        <option value="2">
+                                            February
+                                        </option>
+
+                                        <option value="3">
+                                            March
+                                        </option>
+
+                                        <option value="4">
+                                            April
+                                        </option>
+
+                                        <option value="5">
+                                            May
+                                        </option>
+
+                                        <option value="6">
+                                            June
+                                        </option>
+
+                                        <option value="7">
+                                            July
+                                        </option>
+
+                                        <option value="8">
+                                            August
+                                        </option>
+
+                                        <option value="9">
+                                            September
+                                        </option>
+
+                                        <option value="10">
+                                            October
+                                        </option>
+
+                                        <option value="11">
+                                            November
+                                        </option>
+
+                                        <option value="12">
+                                            December
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================
+                             ELECTRICITY
+                        ================================== -->
+
+                        <div class="business-card">
+
+                            <div class="business-section-header yellow-section">
+
+                                <div class="section-icon">
+
+                                    <i class="fa-solid fa-bolt"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2>
+                                        Electricity
+                                    </h2>
+
+                                    <p>
+                                        Monthly electricity consumption
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="business-fields">
+
+                                <!-- GRID ELECTRICITY -->
+
+                                <div>
+
+                                    <label
+                                        for="grid_electricity_kwh"
+                                        class="business-label"
+                                    >
+                                        Grid Electricity
+                                        <span>(kWh)</span>
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="grid_electricity_kwh"
+                                        class="input"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0.00"
+                                    >
+
+                                </div>
+
+
+                                <!-- RENEWABLE ELECTRICITY -->
+
+                                <div>
+
+                                    <label
+                                        for="renewable_electricity_kwh"
+                                        class="business-label"
+                                    >
+                                        Renewable Electricity
+                                        <span>(kWh)</span>
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="renewable_electricity_kwh"
+                                        class="input"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0.00"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================
+                             FUEL
+                        ================================== -->
+
+                        <div class="business-card">
+
+                            <div class="business-section-header orange-section">
+
+                                <div class="section-icon">
+
+                                    <i class="fa-solid fa-gas-pump"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2>
+                                        Fuel Consumption
+                                    </h2>
+
+                                    <p>
+                                        Fuel used during business operations
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="business-fields">
+
+                                <!-- DIESEL -->
+
+                                <div>
+
+                                    <label
+                                        for="diesel_liters"
+                                        class="business-label"
+                                    >
+                                        Diesel
+                                        <span>(Liters)</span>
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="diesel_liters"
+                                        class="input"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0.00"
+                                    >
+
+                                </div>
+
+
+                                <!-- PETROL -->
+
+                                <div>
+
+                                    <label
+                                        for="petrol_liters"
+                                        class="business-label"
+                                    >
+                                        Petrol
+                                        <span>(Liters)</span>
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="petrol_liters"
+                                        class="input"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0.00"
+                                    >
+
+                                </div>
+
+
+                                <!-- LPG -->
+
+                                <div>
+
+                                    <label
+                                        for="lpg_kg"
+                                        class="business-label"
+                                    >
+                                        LPG
+                                        <span>(kg)</span>
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="lpg_kg"
+                                        class="input"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0.00"
+                                    >
+
+                                </div>
+
+
+                                <!-- NATURAL GAS -->
+
+                                <div>
+
+                                    <label
+                                        for="natural_gas_m3"
+                                        class="business-label"
+                                    >
+                                        Natural Gas
+                                        <span>(m³)</span>
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="natural_gas_m3"
+                                        class="input"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0.00"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =====================================
+                         RIGHT COLUMN
+                    ====================================== -->
+
+                    <div class="business-column">
+
+
+                        <!-- =================================
+                             CARBON SUMMARY
+                        ================================== -->
+
+                        <div class="carbon-summary">
+
+                            <div class="carbon-summary-header">
+
+                                <div class="carbon-summary-icon">
+
+                                    <i class="fa-solid fa-leaf"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2>
+                                        Carbon Summary
+                                    </h2>
+
+                                    <p>
+                                        Estimated carbon emissions
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- TOTAL CARBON -->
+
+                            <div class="carbon-total-box">
+
+                                <div class="carbon-label">
+
+                                    <i class="fa-solid fa-cloud"></i>
+
+                                    <span>
+                                        Total Carbon Emission
+                                    </span>
+
+                                </div>
+
+
+                                <div class="carbon-value-row">
+
+                                    <span
+                                        id="totalCarbon"
+                                        class="carbon-value"
+                                    >
+                                        0.00
+                                    </span>
+
+                                    <span class="carbon-unit">
+                                        tCO₂e
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- STATUS -->
+
+                            <div class="carbon-status">
+
+                                <p class="carbon-status-label">
+
+                                    <i class="fa-solid fa-chart-simple"></i>
+
+                                    Status
+
+                                </p>
+
+
+                                <span class="status-draft">
+
+                                    <i class="fa-solid fa-pen-to-square"></i>
+
+                                    Draft
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- INFORMATION -->
+
+                            <div class="carbon-info">
+
+                                <i class="fa-solid fa-circle-info"></i>
+
+                                <p>
+                                    Complete the business data fields
+                                    and save the record to calculate
+                                    your carbon emissions.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================
+                             TRANSPORTATION
+                        ================================== -->
+
+                        <div class="business-card">
+
+                            <div class="business-section-header purple-section">
+
+                                <div class="section-icon">
+
+                                    <i class="fa-solid fa-truck"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h2>
+                                        Transportation
+                                    </h2>
+
+                                    <p>
+                                        Business and employee transportation
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="business-fields">
+
+                                <!-- BUSINESS TRAVEL -->
+
+                                <div>
+
+                                    <label
+                                        for="business_travel_km"
+                                        class="business-label"
+                                    >
+                                        Business Travel
+                                        <span>(km)</span>
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="business_travel_km"
+                                        class="input"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0.00"
+                                    >
+
+                                </div>
+
+
+                                <!-- EMPLOYEE TRAVEL -->
+
+                                <div>
+
+                                    <label
+                                        for="employee_travel_km"
+                                        class="business-label"
+                                    >
+                                        Employee Travel
+                                        <span>(km)</span>
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="employee_travel_km"
+                                        class="input"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0.00"
+                                    >
+
+                                </div>
+
+
+                                <!-- FREIGHT -->
+
+                                <div class="business-field-full">
+
+                                    <label
+                                        for="freight_transport_km"
+                                        class="business-label"
+                                    >
+                                        Freight Transport
+                                        <span>(km)</span>
+                                    </label>
+
+                                    <input
+                                        type="number"
+                                        id="freight_transport_km"
+                                        class="input"
+                                        min="0"
+                                        step="0.01"
+                                        placeholder="0.00"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-              </div>
 
-              <!-- Fuel -->
 
-              <div class="card">
-                <h2 class="section-title">Fuel Consumption</h2>
+                <!-- =========================================
+                     WASTE - FULL WIDTH
+                ========================================== -->
 
-                <div class="grid md:grid-cols-2 gap-4">
-                  <input
-                    id="diesel_liters"
-                    class="input"
-                    placeholder="Diesel (L)"
-                  />
+                <div class="business-card business-waste-card">
 
-                  <input
-                    id="petrol_liters"
-                    class="input"
-                    placeholder="Petrol (L)"
-                  />
 
-                  <input id="lpg_kg" class="input" placeholder="LPG (kg)" />
+                    <div class="business-section-header green-section">
 
-                  <input
-                    id="natural_gas_m3"
-                    class="input"
-                    placeholder="Natural Gas (m³)"
-                  />
+                        <div class="section-icon">
+
+                            <i class="fa-solid fa-recycle"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Waste
+                            </h2>
+
+                            <p>
+                                Monthly waste generation
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="business-fields business-waste-fields">
+
+                        <!-- GENERAL WASTE -->
+
+                        <div>
+
+                            <label
+                                for="general_waste_kg"
+                                class="business-label"
+                            >
+                                General Waste
+                                <span>(kg)</span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="general_waste_kg"
+                                class="input"
+                                min="0"
+                                step="0.01"
+                                placeholder="0.00"
+                            >
+
+                        </div>
+
+
+                        <!-- RECYCLED WASTE -->
+
+                        <div>
+
+                            <label
+                                for="recycled_waste_kg"
+                                class="business-label"
+                            >
+                                Recycled Waste
+                                <span>(kg)</span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="recycled_waste_kg"
+                                class="input"
+                                min="0"
+                                step="0.01"
+                                placeholder="0.00"
+                            >
+
+                        </div>
+
+
+                        <!-- HAZARDOUS WASTE -->
+
+                        <div>
+
+                            <label
+                                for="hazardous_waste_kg"
+                                class="business-label"
+                            >
+                                Hazardous Waste
+                                <span>(kg)</span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="hazardous_waste_kg"
+                                class="input"
+                                min="0"
+                                step="0.01"
+                                placeholder="0.00"
+                            >
+
+                        </div>
+
+                    </div>
+
                 </div>
-              </div>
 
-              <!-- Transportation -->
+            </main>
 
-              <div class="card">
-                <h2 class="section-title">Transportation</h2>
 
-                <div class="grid gap-4">
-                  <input
-                    id="business_travel_km"
-                    class="input"
-                    placeholder="Business Travel (km)"
-                  />
+            <!-- FOOTER -->
+            <div id="footer"></div>
 
-                  <input
-                    id="employee_travel_km"
-                    class="input"
-                    placeholder="Employee Travel (km)"
-                  />
+        </div>
 
-                  <input
-                    id="freight_transport_km"
-                    class="input"
-                    placeholder="Freight Transport (km)"
-                  />
-                </div>
-              </div>
-
-              <!-- Waste -->
-
-              <div class="card">
-                <h2 class="section-title">Waste</h2>
-
-                <div class="grid gap-4">
-                  <input
-                    id="general_waste_kg"
-                    class="input"
-                    placeholder="General Waste (kg)"
-                  />
-
-                  <input
-                    id="recycled_waste_kg"
-                    class="input"
-                    placeholder="Recycled Waste (kg)"
-                  />
-
-                  <input
-                    id="hazardous_waste_kg"
-                    class="input"
-                    placeholder="Hazardous Waste (kg)"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- RIGHT -->
-
-            <div>
-              <div class="card sticky top-6">
-                <h2 class="text-xl font-bold mb-4">Carbon Summary</h2>
-
-                <div class="space-y-4">
-                  <div>
-                    <span>Total Carbon</span>
-
-                    <h1
-                      id="totalCarbon"
-                      class="text-4xl font-bold text-green-600"
-                    >
-                      0.00
-                    </h1>
-
-                    <small>tCO₂e</small>
-                  </div>
-
-                  <hr />
-
-                  <div>
-                    <p>Status</p>
-
-                    <span
-                      class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded"
-                    >
-                      Draft
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-
-        <div id="footer"></div>
-      </div>
     </div>
 
-    <script type="module" src="business.js"></script>
-  </body>
+
+    <!-- JAVASCRIPT -->
+
+    <script
+        type="module"
+        src="business.js"
+    ></script>
+
+</body>
+
 </html>

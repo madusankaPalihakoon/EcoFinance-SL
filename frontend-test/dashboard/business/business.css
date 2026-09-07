@@ -1,25 +1,924 @@
-.input {
-  width: 100%;
+/* =========================================
+   BUSINESS PAGE
+========================================= */
 
-  border: 1px solid #d1d5db;
-
-  border-radius: 10px;
-
-  padding: 12px;
+.business-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
 }
+
+.business-page-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.business-page-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #d1fae5;
+    color: #059669;
+
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.business-page-title h1 {
+    margin: 0;
+
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 700;
+
+    color: #1e293b;
+}
+
+.business-page-title p {
+    margin-top: 5px;
+
+    font-size: 14px;
+    color: #64748b;
+}
+
+
+/* =========================================
+   PAGE ACTIONS
+========================================= */
+
+.business-page-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   TWO COLUMN MAIN LAYOUT
+========================================= */
+
+.business-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 24px;
+
+    align-items: start;
+}
+
+
+/* =========================================
+   COLUMN
+========================================= */
+
+.business-column {
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+
+    min-width: 0;
+}
+
+
+/* =========================================
+   BUSINESS CARD
+========================================= */
+
+.business-card {
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.business-section-header {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.business-section-header h2 {
+    margin: 0;
+
+    font-size: 18px;
+    line-height: 1.3;
+
+    font-weight: 700;
+
+    color: #1e293b;
+}
+
+.business-section-header p {
+    margin: 3px 0 0;
+
+    font-size: 13px;
+
+    color: #64748b;
+}
+
+
+/* =========================================
+   SECTION ICON
+========================================= */
+
+.section-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   SECTION COLORS
+========================================= */
+
+.blue-section .section-icon {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.yellow-section .section-icon {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.orange-section .section-icon {
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+.purple-section .section-icon {
+    background: #f3e8ff;
+    color: #9333ea;
+}
+
+.green-section .section-icon {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+
+/* =========================================
+   FORM FIELD GRID
+========================================= */
+
+.business-fields {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 16px;
+}
+
+
+/* =========================================
+   FULL WIDTH FIELD
+========================================= */
+
+.business-field-full {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.business-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #334155;
+}
+
+.business-label span {
+    color: #64748b;
+    font-weight: 400;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.input {
+    width: 100%;
+    height: 44px;
+
+    box-sizing: border-box;
+
+    padding: 0 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* =========================================
+   INPUT HOVER
+========================================= */
+
+.input:hover {
+    border-color: #94a3b8;
+}
+
+
+/* =========================================
+   INPUT FOCUS
+========================================= */
 
 .input:focus {
-  outline: none;
+    border-color: #10b981;
 
-  border-color: #10b981;
+    box-shadow:
+        0 0 0 3px rgba(16, 185, 129, 0.12);
 
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    outline: none;
 }
 
-.section-title {
-  font-size: 20px;
 
-  font-weight: 700;
+/* =========================================
+   PLACEHOLDER
+========================================= */
 
-  margin-bottom: 20px;
+.input::placeholder {
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   NUMBER INPUT
+========================================= */
+
+.input[type="number"] {
+    appearance: auto;
+}
+
+.input[type="number"]::-webkit-inner-spin-button,
+.input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+select.input {
+    cursor: pointer;
+}
+
+
+/* =========================================
+   CARBON SUMMARY
+========================================= */
+
+.carbon-summary {
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #d1fae5;
+    border-radius: 16px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 6px 20px rgba(15, 23, 42, 0.08);
+
+    /*
+       Keeps Carbon Summary at the
+       top-right while scrolling.
+    */
+    position: sticky;
+    top: 24px;
+}
+
+
+/* =========================================
+   CARBON HEADER
+========================================= */
+
+.carbon-summary-header {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+/* =========================================
+   CARBON ICON
+========================================= */
+
+.carbon-summary-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dcfce7;
+    color: #16a34a;
+
+    font-size: 19px;
+}
+
+
+/* =========================================
+   CARBON TITLE
+========================================= */
+
+.carbon-summary-header h2 {
+    margin: 0;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    color: #1e293b;
+}
+
+.carbon-summary-header p {
+    margin: 3px 0 0;
+
+    font-size: 13px;
+
+    color: #64748b;
+}
+
+
+/* =========================================
+   CARBON TOTAL
+========================================= */
+
+.carbon-total-box {
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfdf5,
+            #f0fdf4
+        );
+
+    border: 1px solid #bbf7d0;
+}
+
+
+/* =========================================
+   CARBON LABEL
+========================================= */
+
+.carbon-label {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #475569;
+}
+
+.carbon-label i {
+    color: #16a34a;
+}
+
+
+/* =========================================
+   CARBON VALUE
+========================================= */
+
+.carbon-value-row {
+    display: flex;
+    align-items: baseline;
+
+    gap: 8px;
+}
+
+.carbon-value {
+    font-size: 38px;
+    line-height: 1;
+
+    font-weight: 800;
+
+    color: #16a34a;
+}
+
+.carbon-unit {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #64748b;
+}
+
+
+/* =========================================
+   CARBON STATUS
+========================================= */
+
+.carbon-status {
+    margin-top: 20px;
+}
+
+.carbon-status-label {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin: 0 0 9px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #334155;
+}
+
+.carbon-status-label i {
+    color: #64748b;
+}
+
+
+/* =========================================
+   DRAFT STATUS
+========================================= */
+
+.status-draft {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 13px;
+
+    border-radius: 999px;
+
+    background: #fef3c7;
+
+    color: #a16207;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   CARBON INFORMATION
+========================================= */
+
+.carbon-info {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    background: #eff6ff;
+
+    border: 1px solid #dbeafe;
+}
+
+.carbon-info > i {
+    flex-shrink: 0;
+
+    margin-top: 2px;
+
+    color: #2563eb;
+}
+
+.carbon-info p {
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    color: #475569;
+}
+
+
+/* =========================================
+   WASTE FULL WIDTH
+========================================= */
+
+.business-waste-card {
+    width: 100%;
+
+    margin-top: 24px;
+}
+
+
+/*
+   Three equal fields across the
+   full-width Waste card.
+*/
+
+.business-waste-fields {
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+}
+
+
+/* =========================================
+   HISTORY BUTTON
+========================================= */
+
+.btn-history {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.btn-history:hover {
+    background: #f8fafc;
+
+    border-color: #94a3b8;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.btn-primary {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+.btn-primary:hover {
+    background: #15803d;
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================
+   HISTORY CARD
+========================================= */
+
+.business-history-card {
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 28px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================
+   HISTORY TABLE
+========================================= */
+
+.history-th {
+    padding: 14px 16px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #475569;
+
+    white-space: nowrap;
+}
+
+.history-td {
+    padding: 16px;
+
+    font-size: 14px;
+
+    color: #334155;
+}
+
+
+/* =========================================
+   VIEW BUTTON
+========================================= */
+
+.view-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.view-button:hover {
+    background: #dbeafe;
+
+    color: #1d4ed8;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+
+/* -----------------------------------------
+   TABLET
+----------------------------------------- */
+
+@media (max-width: 1100px) {
+
+    .business-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carbon-summary {
+        position: static;
+    }
+
+    .business-waste-fields {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* -----------------------------------------
+   MOBILE / SMALL TABLET
+----------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .ml-64 {
+        margin-left: 0;
+    }
+
+    .business-page-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+    }
+
+    .business-page-actions {
+        width: 100%;
+    }
+
+    .btn-history,
+    .btn-primary {
+        flex: 1;
+    }
+
+    .business-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .business-waste-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .business-field-full {
+        grid-column: auto;
+    }
+
+    .business-card,
+    .carbon-summary {
+        padding: 18px;
+    }
+
+    .business-page-title h1 {
+        font-size: 24px;
+    }
+
+    .business-section-header {
+        margin-bottom: 16px;
+
+        padding-bottom: 14px;
+    }
+
+    .business-section-header h2 {
+        font-size: 16px;
+    }
+
+    .business-section-header p {
+        font-size: 12px;
+    }
+
+    .section-icon {
+        width: 38px;
+        height: 38px;
+
+        font-size: 16px;
+    }
+
+    .carbon-value {
+        font-size: 34px;
+    }
+
+}
+
+
+/* -----------------------------------------
+   SMALL MOBILE
+----------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .business-page-actions {
+        flex-direction: column;
+    }
+
+    .btn-history,
+    .btn-primary {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .business-card,
+    .carbon-summary {
+        padding: 15px;
+
+        border-radius: 12px;
+    }
+
+    .business-fields {
+        gap: 12px;
+    }
+
+    .business-page-title {
+        align-items: flex-start;
+    }
+
+    .business-page-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
+
 }

@@ -2,133 +2,369 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>AI Sustainability Reports</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="ai.css"
+    >
 </head>
 
-<body class="bg-gray-100">
+
+<body class="bg-slate-100">
+
     <!-- Sidebar -->
     <div id="sidebar"></div>
 
-    <!-- Main Content -->
+
+    <!-- Main Area -->
     <div class="ml-64 min-h-screen flex flex-col">
+
         <!-- Header -->
         <div id="header"></div>
 
+
         <!-- Page Content -->
         <main class="flex-1 p-8">
-            <!-- Header -->
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <h1 class="text-3xl font-bold text-gray-800">
-                        🤖 AI Sustainability Reports
-                    </h1>
 
-                    <p class="text-gray-500 mt-2">
-                        Generate AI-powered sustainability reports based on your ESG and
-                        Carbon data.
-                    </p>
-                </div>
+            <div class="max-w-7xl mx-auto">
 
-                <button id="generateBtn"
-                    class="bg-emerald-600 hover:bg-emerald-700 transition text-white font-semibold px-6 py-3 rounded-lg shadow">
-                    Generate AI Report
-                </button>
-            </div>
+                <!-- Page Header -->
+                <div class="flex justify-between items-center mb-8">
 
-            <!-- Summary Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white rounded-xl shadow p-5">
-                    <p class="text-gray-500 text-sm">Total Reports</p>
-                    <h2 id="totalReports" class="text-3xl font-bold mt-2">0</h2>
-                </div>
+                    <div>
 
-                <div class="bg-white rounded-xl shadow p-5">
-                    <p class="text-gray-500 text-sm">Total Tokens</p>
-                    <h2 id="totalTokens" class="text-3xl font-bold mt-2 text-blue-600">
-                        0
-                    </h2>
-                </div>
+                        <div class="flex items-center gap-3">
 
-                <div class="bg-white rounded-xl shadow p-5">
-                    <p class="text-gray-500 text-sm">Latest AI Model</p>
-                    <h2 id="lastModel" class="text-lg font-semibold mt-2">-</h2>
-                </div>
+                            <div class="page-icon">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
 
-                <div class="bg-white rounded-xl shadow p-5">
-                    <p class="text-gray-500 text-sm">Estimated Cost</p>
-                    <h2 id="totalCost" class="text-3xl font-bold mt-2 text-emerald-600">
-                        $0.0000
-                    </h2>
-                </div>
-            </div>
+                            <div>
 
-            <!-- History Table -->
-            <div class="bg-white rounded-xl shadow overflow-hidden">
-                <div class="px-6 py-4 border-b">
-                    <h3 class="text-lg font-semibold">AI Report History</h3>
-                </div>
+                                <h1 class="text-3xl font-bold text-slate-800">
+                                    AI Sustainability Reports
+                                </h1>
 
-                <div class="overflow-x-auto">
-                    <table class="min-w-full">
-                        <thead class="bg-gray-50">
-                            <tr class="text-left text-gray-600 text-sm uppercase">
-                                <th class="px-6 py-4">ID</th>
-                                <th class="px-6 py-4">Model</th>
-                                <th class="px-6 py-4">Status</th>
-                                <th class="px-6 py-4">Tokens</th>
-                                <th class="px-6 py-4">Cost</th>
-                                <th class="px-6 py-4">Generated On</th>
-                                <th class="px-6 py-4 text-center">Action</th>
-                            </tr>
-                        </thead>
+                                <p class="text-slate-500 mt-1">
+                                    Generate AI-powered sustainability reports
+                                    based on your ESG and Carbon data.
+                                </p>
 
-                        <tbody id="historyTable" class="divide-y divide-gray-200"></tbody>
-                    </table>
-                </div>
+                            </div>
 
-                <div id="emptyState" class="hidden py-16 text-center">
-                    <div class="text-6xl mb-4">🤖</div>
+                        </div>
 
-                    <h3 class="text-xl font-semibold text-gray-700">
-                        No AI Reports Found
-                    </h3>
-
-                    <p class="text-gray-500 mt-2">
-                        Generate your first AI Sustainability Report to get started.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Your Table -->
-
-            <!-- Empty State -->
-            <!-- View Report Modal -->
-            <div id="reportModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-                <div class="bg-white w-11/12 max-w-5xl rounded-xl shadow-xl">
-                    <div class="flex justify-between items-center border-b p-5">
-                        <h2 class="text-xl font-bold">AI Sustainability Report</h2>
-
-                        <button id="closeModal" class="text-2xl text-gray-500 hover:text-red-500">
-                            &times;
-                        </button>
                     </div>
 
-                    <div id="reportContent" class="prose prose-lg max-w-none p-8 max-h-[75vh] overflow-y-auto"></div>
+
+                    <button
+                        id="generateBtn"
+                        class="btn-primary"
+                    >
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        Generate AI Report
+                    </button>
+
                 </div>
+
+
+                <!-- Summary Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+
+                    <!-- Total Reports -->
+                    <div class="summary-card">
+
+                        <div class="summary-icon reports-icon">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+
+                        <div>
+
+                            <p class="summary-label">
+                                Total Reports
+                            </p>
+
+                            <h2
+                                id="totalReports"
+                                class="summary-value"
+                            >
+                                0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Total Tokens -->
+                    <div class="summary-card">
+
+                        <div class="summary-icon tokens-icon">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+
+                        <div>
+
+                            <p class="summary-label">
+                                Total Tokens
+                            </p>
+
+                            <h2
+                                id="totalTokens"
+                                class="summary-value"
+                            >
+                                0
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Latest Model -->
+                    <div class="summary-card">
+
+                        <div class="summary-icon model-icon">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+
+                        <div class="min-w-0">
+
+                            <p class="summary-label">
+                                Latest AI Model
+                            </p>
+
+                            <h2
+                                id="lastModel"
+                                class="summary-model"
+                            >
+                                -
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Estimated Cost -->
+                    <div class="summary-card">
+
+                        <div class="summary-icon cost-icon">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                        </div>
+
+                        <div>
+
+                            <p class="summary-label">
+                                Estimated Cost
+                            </p>
+
+                            <h2
+                                id="totalCost"
+                                class="summary-cost"
+                            >
+                                $0.0000
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- History Card -->
+                <div class="card">
+
+                    <div class="flex items-center gap-3 mb-6">
+
+                        <div class="section-icon">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+
+                        <div>
+
+                            <h2 class="section-title">
+                                AI Report History
+                            </h2>
+
+                            <p class="text-sm text-slate-500">
+                                View previously generated AI sustainability reports.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Table -->
+                    <div class="overflow-x-auto">
+
+                        <table class="w-full ai-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        ID
+                                    </th>
+
+                                    <th>
+                                        Model
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Tokens
+                                    </th>
+
+                                    <th>
+                                        Cost
+                                    </th>
+
+                                    <th>
+                                        Generated On
+                                    </th>
+
+                                    <th class="text-center">
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody
+                                id="historyTable"
+                            ></tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <!-- Empty State -->
+                    <div
+                        id="emptyState"
+                        class="hidden"
+                    >
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+
+                            <h3>
+                                No AI Reports Found
+                            </h3>
+
+                            <p>
+                                Generate your first AI Sustainability Report
+                                to get started.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </main>
+
 
         <!-- Footer -->
         <div id="footer"></div>
+
     </div>
 
+
+    <!-- View Report Modal -->
+    <div
+        id="reportModal"
+        class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50"
+    >
+
+        <div
+            class="bg-white w-11/12 max-w-5xl rounded-2xl shadow-2xl max-h-[90vh] flex flex-col"
+        >
+
+            <!-- Modal Header -->
+            <div
+                class="flex justify-between items-center border-b border-slate-200 p-5"
+            >
+
+                <div class="flex items-center gap-3">
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-slate-800">
+                        AI Sustainability Report
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="closeModal"
+                    class="modal-close"
+                    aria-label="Close"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <!-- Modal Content -->
+            <div
+                id="reportContent"
+                class="prose prose-lg max-w-none p-8 max-h-[75vh] overflow-y-auto"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="module" src="./history.js"></script>
+
+
+    <!-- Page JS -->
+    <script
+        type="module"
+        src="history.js"
+    ></script>
+
 </body>
 
 </html>

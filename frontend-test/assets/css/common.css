@@ -1,35 +1,20 @@
 :root {
-
     --primary: #16a34a;
-
     --primary-hover: #15803d;
-
     --secondary: #0f172a;
-
     --background: #f1f5f9;
-
     --card: #ffffff;
-
     --text: #0f172a;
-
     --muted: #64748b;
-
     --border: #e2e8f0;
-
 }
 
 
-/* ================================
-   Base
-================================ */
 
 html,
 body {
-
     margin: 0;
-
     padding: 0;
-
     min-height: 100%;
 
     font-family:
@@ -38,29 +23,27 @@ body {
         Arial,
         sans-serif;
 
-    background:
-        var(--background);
+    background: var(--background);
+    color: var(--text);
 
-    color:
-        var(--text);
-
+    /* Prevent horizontal scrolling */
+    overflow-x: hidden;
 }
 
 
-/* ================================
-   Sidebar
-================================ */
+#headerCompanyName {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+}
 
 .menu-item {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
 
     width: 100%;
-
     box-sizing: border-box;
 
     padding: 12px 16px;
@@ -73,47 +56,29 @@ body {
 
     transition:
         background-color 0.2s ease,
-        color 0.2s ease;
-
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 
 .menu-item:hover {
-
-    background:
-        #1e293b;
-
-    color:
-        #ffffff;
-
+    background: #1e293b;
+    color: #ffffff;
 }
 
 
 .menu-item.active {
-
-    background:
-        #059669;
-
-    color:
-        #ffffff;
-
+    background: #059669;
+    color: #ffffff;
 }
 
 
 .menu-item.active:hover {
-
-    background:
-        #047857;
-
-    color:
-        #ffffff;
-
+    background: #047857;
+    color: #ffffff;
 }
 
 
-/* ================================
-   Cards
-================================ */
 
 .card {
     background: #ffffff;
@@ -127,9 +92,6 @@ body {
 }
 
 
-/* ================================
-   Section Titles
-================================ */
 
 .section-title {
     font-size: 20px;
@@ -146,9 +108,7 @@ body {
 }
 
 
-/* ================================
-   Labels
-================================ */
+
 
 .form-label {
     display: block;
@@ -163,9 +123,6 @@ body {
 }
 
 
-/* ================================
-   Inputs
-================================ */
 
 .input {
     width: 100%;
@@ -217,12 +174,8 @@ textarea.input {
 }
 
 
-/* ================================
-   Primary Button
-================================ */
 
 .btn-primary {
-
     display: inline-flex;
 
     align-items: center;
@@ -235,11 +188,9 @@ textarea.input {
 
     border-radius: 10px;
 
-    background:
-        #16a34a;
+    background: #16a34a;
 
-    color:
-        #ffffff;
+    color: #ffffff;
 
     font-weight: 600;
 
@@ -250,29 +201,20 @@ textarea.input {
     transition:
         background-color 0.2s ease,
         transform 0.1s ease;
-
 }
 
 
 .btn-primary:hover {
-
-    background:
-        #15803d;
-
+    background: #15803d;
 }
 
 
 .btn-primary:active {
-
-    transform:
-        translateY(1px);
-
+    transform: translateY(1px);
 }
 
 
-/* ================================
-   Secondary Button
-================================ */
+
 
 .btn-secondary {
     display: inline-flex;
@@ -308,9 +250,7 @@ textarea.input {
 }
 
 
-/* ================================
-   Disabled Inputs
-================================ */
+
 
 .input:disabled {
     background: #f8fafc;
@@ -318,4 +258,28 @@ textarea.input {
     color: #64748b;
 
     cursor: not-allowed;
+}
+
+
+
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
 }

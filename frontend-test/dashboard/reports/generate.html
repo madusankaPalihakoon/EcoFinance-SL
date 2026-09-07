@@ -1,49 +1,119 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Generate Report</title>
+  <title>Generate Report</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="../../assets/css/common.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
 
-    <link rel="stylesheet" href="reports.css" />
-  </head>
+  <link rel="stylesheet" href="../../assets/css/common.css">
+  <link rel="stylesheet" href="reports.css">
+</head>
 
-  <body class="bg-gray-100">
-    <div class="flex min-h-screen">
-      <div id="sidebar"></div>
+<body class="bg-slate-100">
 
-      <div class="flex-1">
-        <div id="header"></div>
+  <!-- Sidebar -->
+  <div id="sidebar"></div>
 
-        <main class="p-8">
-          <div class="max-w-4xl mx-auto">
-            <div class="card">
-              <h1 class="text-3xl font-bold mb-2">Sustainability Report</h1>
+  <!-- Main Area -->
+  <div class="ml-64 min-h-screen flex flex-col">
 
-              <p class="text-gray-500 mb-8">
-                Generate the latest ESG Sustainability Report.
-              </p>
+    <!-- Header -->
+    <div id="header"></div>
 
-              <div id="summary" class="grid md:grid-cols-2 gap-6"></div>
+    <!-- Content -->
+    <main class="flex-1 p-8">
 
-              <div class="mt-8">
-                <button id="generateBtn" class="btn-primary">
+      <div class="max-w-6xl mx-auto">
+
+        <!-- Page Header -->
+        <div class="flex justify-between items-center mb-8">
+
+          <div>
+            <div class="flex items-center gap-3">
+              <div class="page-icon">
+                <i class="fa-solid fa-file-lines"></i>
+              </div>
+
+              <div>
+                <h1 class="text-3xl font-bold text-slate-800">
                   Generate Report
-                </button>
+                </h1>
+
+                <p class="text-slate-500 mt-1">
+                  Generate the latest ESG Sustainability Report.
+                </p>
               </div>
             </div>
           </div>
-        </main>
 
-        <div id="footer"></div>
+          <a href="history.html" class="btn-secondary">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Report History
+          </a>
+
+        </div>
+
+
+        <!-- Summary -->
+        <div
+          id="summary"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+
+
+        <!-- Generate Section -->
+        <div class="card mt-8">
+
+          <div class="flex items-center gap-3 mb-5">
+
+            <div class="section-icon">
+              <i class="fa-solid fa-file-circle-plus"></i>
+            </div>
+
+            <div>
+              <h2 class="section-title">
+                Sustainability Report
+              </h2>
+
+              <p class="text-sm text-slate-500">
+                Generate a report using your latest business and ESG data.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="border-t border-slate-200 pt-6">
+
+            <button
+              id="generateBtn"
+              class="btn-primary"
+            >
+              <i class="fa-solid fa-file-export"></i>
+              Generate Report
+            </button>
+
+          </div>
+
+        </div>
+
       </div>
-    </div>
 
-    <script type="module" src="generate.js"></script>
-  </body>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+  </div>
+
+  <script type="module" src="generate.js"></script>
+
+</body>
 </html>

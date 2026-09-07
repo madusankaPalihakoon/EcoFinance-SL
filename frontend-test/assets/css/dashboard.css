@@ -1,92 +1,89 @@
-.welcome-card {
+.dashboard-page {
+    width: 100%;
+}
 
+
+
+
+.welcome-card {
     display: flex;
 
     align-items: center;
 
     justify-content: space-between;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #f0fdf4
-        );
-
-    border: 1px solid #dcfce7;
-
-    border-radius: 18px;
+    gap: 30px;
 
     padding: 30px;
 
     margin-bottom: 30px;
 
-    box-shadow:
-        0 5px 20px rgba(
-            15,
-            23,
-            42,
-            0.06
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #064e3b,
+            #059669
         );
 
+    color: white;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.10);
 }
 
 
 .welcome-small {
-
-    margin: 0 0 6px;
-
-    color: #16a34a;
+    margin: 0 0 8px;
 
     font-size: 14px;
 
     font-weight: 600;
 
+    color: #a7f3d0;
 }
 
 
 .welcome-small i {
-
     margin-right: 6px;
-
 }
 
 
 .welcome-title {
-
     margin: 0;
-
-    color: #0f172a;
 
     font-size: 30px;
 
     font-weight: 700;
 
+    line-height: 1.2;
 }
 
 
 .welcome-description {
+    margin: 10px 0 0;
 
-    margin: 8px 0 0;
+    max-width: 650px;
 
-    color: #64748b;
+    color: #d1fae5;
 
-    font-size: 14px;
+    font-size: 15px;
 
+    line-height: 1.6;
 }
 
 
 .welcome-icon {
+    width: 80px;
 
-    width: 75px;
+    height: 80px;
 
-    height: 75px;
+    flex-shrink: 0;
 
     border-radius: 20px;
 
-    background: #dcfce7;
-
-    color: #16a34a;
+    background: rgba(255, 255, 255, 0.15);
 
     display: flex;
 
@@ -94,21 +91,23 @@
 
     justify-content: center;
 
-    font-size: 32px;
+    font-size: 34px;
 
+    color: white;
 }
 
 
 
 .dashboard-card {
-
     display: flex;
 
-    align-items: center;
+    align-items: flex-start;
 
     gap: 18px;
 
-    min-width: 0;
+    min-height: 145px;
+
+    padding: 22px;
 
     background: #ffffff;
 
@@ -116,50 +115,32 @@
 
     border-radius: 16px;
 
-    padding: 24px;
-
     box-shadow:
-        0 4px 12px rgba(
-            15,
-            23,
-            42,
-            0.06
-        );
+        0 5px 18px rgba(0, 0, 0, 0.06);
 
     transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
 .dashboard-card:hover {
-
-    transform:
-        translateY(-5px);
+    transform: translateY(-3px);
 
     box-shadow:
-        0 12px 25px rgba(
-            15,
-            23,
-            42,
-            0.12
-        );
-
+        0 10px 25px rgba(0, 0, 0, 0.10);
 }
 
 
 
-
 .card-icon {
+    width: 52px;
 
-    width: 58px;
+    height: 52px;
 
-    height: 58px;
+    flex-shrink: 0;
 
-    min-width: 58px;
-
-    border-radius: 15px;
+    border-radius: 14px;
 
     display: flex;
 
@@ -167,60 +148,46 @@
 
     justify-content: center;
 
-    font-size: 24px;
-
+    font-size: 22px;
 }
 
 
 .company-icon {
-
     background: #dbeafe;
 
     color: #2563eb;
-
 }
 
 
 .esg-icon {
-
     background: #dcfce7;
 
     color: #16a34a;
-
 }
 
 
 .carbon-icon {
-
     background: #fee2e2;
 
     color: #dc2626;
-
 }
 
 
 .reports-icon {
+    background: #fef3c7;
 
-    background: #f3e8ff;
-
-    color: #9333ea;
-
+    color: #d97706;
 }
 
 
-
-
 .card-content {
-
     min-width: 0;
-
     flex: 1;
-
+    overflow: visible;
 }
 
 
 .card-label {
-
     margin: 0;
 
     color: #64748b;
@@ -228,86 +195,75 @@
     font-size: 14px;
 
     font-weight: 600;
-
 }
 
 
 .card-value {
-
-    margin: 5px 0 7px;
-
+    margin: 6px 0;
     color: #0f172a;
-
-    font-size: 23px;
-
+    font-size: 20px;
     font-weight: 700;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
-
+    line-height: 1.4;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+    word-break: normal;
 }
 
 
 .card-description {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
 
     margin: 0;
 
-    color: #94a3b8;
+    color: #64748b;
 
     font-size: 12px;
-
 }
 
 
 .card-description i {
-
-    margin-right: 4px;
-
+    color: #16a34a;
 }
 
 
 
+
 .quick-actions {
+    margin-top: 30px;
+
+    margin-bottom: 30px;
+
+    padding: 25px;
 
     background: #ffffff;
 
     border: 1px solid #e2e8f0;
 
-    border-radius: 16px;
-
-    padding: 26px;
-
-    margin-bottom: 32px;
+    border-radius: 18px;
 
     box-shadow:
-        0 4px 12px rgba(
-            15,
-            23,
-            42,
-            0.06
-        );
-
+        0 5px 18px rgba(0, 0, 0, 0.05);
 }
 
 
 .quick-actions-header {
-
-    margin-bottom: 22px;
-
-}
-
-
-.quick-actions-header h2 {
-
     display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    justify-content: space-between;
 
+    margin-bottom: 20px;
+}
+
+
+.quick-actions-header h2 {
     margin: 0;
 
     color: #0f172a;
@@ -315,62 +271,47 @@
     font-size: 20px;
 
     font-weight: 700;
-
 }
 
 
 .quick-actions-header h2 i {
+    margin-right: 8px;
 
     color: #f59e0b;
-
 }
 
 
 .quick-actions-header p {
-
-    margin: 6px 0 0;
+    margin: 5px 0 0;
 
     color: #64748b;
 
-    font-size: 14px;
-
+    font-size: 13px;
 }
+
 
 
 
 .quick-actions-grid {
-
     display: grid;
 
     grid-template-columns:
-        repeat(
-            3,
-            minmax(
-                0,
-                1fr
-            )
-        );
+        repeat(3, minmax(0, 1fr));
 
     gap: 16px;
-
 }
 
 
-
-
 .quick-action {
-
     display: flex;
 
     align-items: center;
 
-    gap: 14px;
+    gap: 15px;
 
     min-width: 0;
 
     padding: 18px;
-
-    background: #f8fafc;
 
     border: 1px solid #e2e8f0;
 
@@ -378,41 +319,32 @@
 
     text-decoration: none;
 
+    color: inherit;
+
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease,
         border-color 0.2s ease;
-
 }
 
 
 .quick-action:hover {
-
-    transform:
-        translateY(-3px);
+    transform: translateY(-3px);
 
     box-shadow:
-        0 8px 18px rgba(
-            15,
-            23,
-            42,
-            0.10
-        );
-
+        0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 
 
-
 .quick-action-icon {
+    width: 48px;
 
-    width: 50px;
+    height: 48px;
 
-    height: 50px;
+    flex-shrink: 0;
 
-    min-width: 50px;
-
-    border-radius: 13px;
+    border-radius: 12px;
 
     display: flex;
 
@@ -420,170 +352,113 @@
 
     justify-content: center;
 
-    font-size: 21px;
-
+    font-size: 20px;
 }
 
 
 .business-action .quick-action-icon {
-
     background: #dbeafe;
 
     color: #2563eb;
-
 }
 
 
 .esg-action .quick-action-icon {
-
     background: #dcfce7;
 
     color: #16a34a;
-
 }
 
 
 .report-action .quick-action-icon {
+    background: #fef3c7;
 
-    background: #f3e8ff;
-
-    color: #9333ea;
-
+    color: #d97706;
 }
 
 
-
 .quick-action-content {
-
-    flex: 1;
-
     min-width: 0;
 
+    flex: 1;
 }
 
 
 .quick-action-content h3 {
-
-    margin: 0 0 4px;
+    margin: 0;
 
     color: #0f172a;
 
     font-size: 15px;
 
     font-weight: 700;
-
 }
 
 
 .quick-action-content p {
-
-    margin: 0;
+    margin: 4px 0 0;
 
     color: #64748b;
 
     font-size: 12px;
 
     line-height: 1.4;
-
 }
 
 
-
 .quick-arrow {
+    flex-shrink: 0;
 
     color: #94a3b8;
-
-    font-size: 14px;
 
     transition:
         transform 0.2s ease,
         color 0.2s ease;
-
 }
 
 
-.quick-action:hover
-.quick-arrow {
-
-    transform:
-        translateX(4px);
-
+.quick-action:hover .quick-arrow {
     color: #16a34a;
 
+    transform: translateX(4px);
 }
-
 
 
 
 .chart-card {
+    min-width: 0;
 
     background: #ffffff;
 
     border: 1px solid #e2e8f0;
 
-    border-radius: 16px;
+    border-radius: 18px;
 
-    padding: 26px;
+    padding: 24px;
 
     box-shadow:
-        0 4px 12px rgba(
-            15,
-            23,
-            42,
-            0.06
-        );
-
+        0 5px 18px rgba(0, 0, 0, 0.05);
 }
 
 
 .chart-header {
-
     margin-bottom: 20px;
-
 }
 
 
 .chart-title-wrapper {
-
     display: flex;
 
     align-items: center;
 
     gap: 12px;
-
 }
-
-
-.chart-title-wrapper h2 {
-
-    margin: 0;
-
-    color: #0f172a;
-
-    font-size: 18px;
-
-    font-weight: 700;
-
-}
-
-
-.chart-title-wrapper p {
-
-    margin: 4px 0 0;
-
-    color: #94a3b8;
-
-    font-size: 12px;
-
-}
-
 
 
 .chart-icon {
+    width: 44px;
 
-    width: 45px;
-
-    height: 45px;
+    height: 44px;
 
     border-radius: 12px;
 
@@ -594,45 +469,64 @@
     justify-content: center;
 
     font-size: 18px;
-
 }
 
 
 .carbon-chart-icon {
-
     background: #fee2e2;
 
     color: #dc2626;
-
 }
 
 
 .esg-chart-icon {
-
     background: #dcfce7;
 
     color: #16a34a;
-
 }
+
+
+.chart-title-wrapper h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.chart-title-wrapper p {
+    margin: 3px 0 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
 
 
 .chart-container {
-
     position: relative;
-
-    height: 320px;
 
     width: 100%;
 
+    height: 300px;
 }
+
+
+.chart-container canvas {
+    max-width: 100%;
+}
+
 
 
 @media (max-width: 1024px) {
 
     .quick-actions-grid {
-
-        grid-template-columns: 1fr;
-
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
 }
@@ -641,34 +535,24 @@
 @media (max-width: 768px) {
 
     .welcome-card {
+        flex-direction: column;
 
-        padding: 22px;
-
-    }
-
-
-    .welcome-title {
-
-        font-size: 24px;
-
+        align-items: flex-start;
     }
 
 
     .welcome-icon {
+        display: none;
+    }
 
-        width: 60px;
 
-        height: 60px;
-
-        font-size: 25px;
-
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
     }
 
 
     .chart-container {
-
         height: 280px;
-
     }
 
 }
@@ -676,44 +560,18 @@
 
 @media (max-width: 640px) {
 
-    .welcome-icon {
-
-        display: none;
-
+    .welcome-title {
+        font-size: 24px;
     }
 
 
     .dashboard-card {
-
         padding: 18px;
-
-    }
-
-
-    .card-icon {
-
-        width: 50px;
-
-        height: 50px;
-
-        min-width: 50px;
-
-        font-size: 20px;
-
-    }
-
-
-    .quick-actions {
-
-        padding: 20px;
-
     }
 
 
     .chart-card {
-
-        padding: 20px;
-
+        padding: 18px;
     }
 
 }

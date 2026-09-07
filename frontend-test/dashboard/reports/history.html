@@ -1,83 +1,219 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
 
-    <title>Report History</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-    <script src="https://cdn.tailwindcss.com"></script>
+  <title>Report History</title>
 
-    <link rel="stylesheet" href="../../assets/css/common.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="reports.css" />
-  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
 
-  <body class="bg-gray-100">
-    <div class="flex min-h-screen">
-      <div id="sidebar"></div>
+  <link rel="stylesheet" href="../../assets/css/common.css">
+  <link rel="stylesheet" href="reports.css">
 
-      <div class="flex-1">
-        <div id="header"></div>
+</head>
 
-        <main class="p-8">
-          <div class="flex justify-between items-center mb-6">
+
+<body class="bg-slate-100">
+
+  <!-- Sidebar -->
+  <div id="sidebar"></div>
+
+
+  <!-- Main Area -->
+  <div class="ml-64 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <div id="header"></div>
+
+
+    <!-- Content -->
+    <main class="flex-1 p-8">
+
+      <div class="max-w-7xl mx-auto">
+
+        <!-- Page Header -->
+        <div class="flex justify-between items-center mb-8">
+
+          <div>
+
+            <div class="flex items-center gap-3">
+
+              <div class="page-icon">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+
+              <div>
+
+                <h1 class="text-3xl font-bold text-slate-800">
+                  Report History
+                </h1>
+
+                <p class="text-slate-500 mt-1">
+                  View and download generated sustainability reports.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <a
+            href="generate.html"
+            class="btn-primary"
+          >
+            <i class="fa-solid fa-plus"></i>
+            Generate Report
+          </a>
+
+        </div>
+
+
+        <!-- Report Table -->
+        <div class="card">
+
+          <div class="flex items-center gap-3 mb-6">
+
+            <div class="section-icon">
+              <i class="fa-solid fa-file-lines"></i>
+            </div>
+
             <div>
-              <h1 class="text-3xl font-bold">Report History</h1>
 
-              <p class="text-gray-500">
-                View and download generated sustainability reports.
+              <h2 class="section-title">
+                Generated Reports
+              </h2>
+
+              <p class="text-sm text-slate-500">
+                Your previously generated sustainability reports.
               </p>
+
             </div>
 
-            <a href="generate.html" class="btn-primary"> + Generate Report </a>
           </div>
 
-          <div class="card">
-            <div class="overflow-x-auto">
-              <table class="w-full">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Title</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th class="text-center">Actions</th>
-                  </tr>
-                </thead>
 
-                <tbody id="reportTable"></tbody>
-              </table>
-            </div>
+          <div class="overflow-x-auto">
+
+            <table class="w-full report-table">
+
+              <thead>
+
+                <tr>
+
+                  <th>
+                    Date
+                  </th>
+
+                  <th>
+                    Title
+                  </th>
+
+                  <th>
+                    Type
+                  </th>
+
+                  <th>
+                    Status
+                  </th>
+
+                  <th class="text-center">
+                    Actions
+                  </th>
+
+                </tr>
+
+              </thead>
+
+
+              <tbody id="reportTable">
+
+              </tbody>
+
+            </table>
+
           </div>
-        </main>
 
-        <div id="footer"></div>
+        </div>
+
       </div>
-    </div>
 
-    <!-- Report Preview -->
+    </main>
+
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+  </div>
+
+
+  <!-- Report Preview Modal -->
+  <div
+    id="reportModal"
+    class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50"
+  >
 
     <div
-      id="reportModal"
-      class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50"
+      class="bg-white rounded-2xl w-11/12 max-w-5xl max-h-[90vh] flex flex-col shadow-2xl"
     >
+
+      <!-- Modal Header -->
       <div
-        class="bg-white rounded-xl w-11/12 max-w-5xl max-h-[90vh] flex flex-col"
+        class="flex justify-between items-center border-b border-slate-200 p-5"
       >
-        <div class="flex justify-between items-center border-b p-5">
-          <h2 class="text-2xl font-bold">Sustainability Report</h2>
 
-          <button id="closeModal" class="text-2xl">×</button>
+        <div class="flex items-center gap-3">
+
+          <div class="section-icon">
+            <i class="fa-solid fa-file-lines"></i>
+          </div>
+
+          <h2 class="text-xl font-bold text-slate-800">
+            Sustainability Report
+          </h2>
+
         </div>
 
-        <div class="overflow-auto p-6">
-          <pre id="reportContent" class="report-preview"></pre>
-        </div>
+
+        <button
+          id="closeModal"
+          class="modal-close"
+          aria-label="Close"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
       </div>
+
+
+      <!-- Modal Content -->
+      <div class="overflow-auto p-6">
+
+        <pre
+          id="reportContent"
+          class="report-preview"
+        ></pre>
+
+      </div>
+
     </div>
 
-    <script type="module" src="history.js"></script>
-  </body>
+  </div>
+
+
+  <script type="module" src="history.js"></script>
+
+</body>
 </html>

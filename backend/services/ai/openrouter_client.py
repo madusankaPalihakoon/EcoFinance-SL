@@ -41,8 +41,18 @@ class OpenRouterClient:
 
         data = response.json()
 
+        print("========== OPENROUTER RESPONSE ==========")
+        print(data)
+        print("==========================================")
+
+        message = data["choices"][0]["message"]
+
+        print("MESSAGE:", message)
+        print("CONTENT:", message.get("content"))
+        print("CONTENT LENGTH:", len(message.get("content") or ""))
+
         return {
-            "content": data["choices"][0]["message"]["content"],
+            "content": message.get("content", ""),
             "usage": data.get("usage", {}),
             "model": data.get("model", self.model),
         }

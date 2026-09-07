@@ -1,25 +1,222 @@
+/* =========================================
+   ESG INPUT
+========================================= */
+
 .input {
-  width: 100%;
+    width: 100%;
+    box-sizing: border-box;
 
-  padding: 12px;
+    padding: 12px 14px;
 
-  border: 1px solid #d1d5db;
+    border: 1px solid #cbd5e1;
 
-  border-radius: 10px;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
 
 .input:focus {
-  outline: none;
 
-  border-color: #10b981;
+    outline: none;
 
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    border-color: #10b981;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(16, 185, 129, 0.15);
+
 }
 
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
 .section-title {
-  font-size: 20px;
 
-  font-weight: bold;
+    font-size: 20px;
 
-  margin-bottom: 20px;
+    font-weight: 700;
+
+    color: #0f172a;
+
+}
+
+
+/* =========================================
+   FORM LABEL
+========================================= */
+
+.form-label {
+
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #334155;
+
+    margin-bottom: 7px;
+
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.card {
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(15, 23, 42, 0.06);
+
+    border: 1px solid #e2e8f0;
+
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.btn-primary {
+
+    background: #059669;
+
+    color: #ffffff;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.btn-primary:hover {
+
+    background: #047857;
+
+}
+
+
+.btn-primary:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =========================================
+   RESULT ITEM
+========================================= */
+
+.result-item {
+
+    padding: 15px 0;
+
+    border-bottom:
+        1px solid #e2e8f0;
+
+}
+
+
+.result-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+/* =========================================
+   CHECKBOX
+========================================= */
+
+input[type="checkbox"] {
+
+    accent-color: #059669;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+table th {
+
+    color: #334155;
+
+}
+
+
+table td {
+
+    color: #475569;
+
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+#detailModal {
+
+    backdrop-filter: blur(2px);
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1024px) {
+
+    .ml-64 {
+
+        margin-left: 0;
+
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    main {
+
+        padding: 20px !important;
+
+    }
+
 }

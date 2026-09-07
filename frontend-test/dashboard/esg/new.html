@@ -1,214 +1,1031 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
 
-    <title>ESG Assessment</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>ESG Assessment | EcoFinance SL</title>
+
+
+    <!-- Tailwind -->
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="../../assets/css/common.css" />
 
-    <link rel="stylesheet" href="esg.css" />
-  </head>
+    <!-- Font Awesome -->
 
-  <body class="bg-gray-100">
-    <div class="flex min-h-screen">
-      <div id="sidebar"></div>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
-      <div class="flex-1">
+
+    <!-- Common CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/common.css"
+    >
+
+
+    <!-- ESG CSS -->
+
+    <link
+        rel="stylesheet"
+        href="esg.css"
+    >
+
+</head>
+
+
+<body class="bg-slate-100">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <div id="sidebar"></div>
+
+
+    <!-- =====================================
+         MAIN AREA
+    ====================================== -->
+
+    <div class="ml-64 min-h-screen flex flex-col">
+
+
+        <!-- =================================
+             HEADER
+        ================================== -->
+
         <div id="header"></div>
 
-        <main class="p-8">
-          <div class="flex justify-between items-center mb-6">
-            <div>
-              <h1 class="text-3xl font-bold">ESG Assessment</h1>
 
-              <p class="text-gray-500">
-                Enter ESG indicators to generate the ESG score.
-              </p>
-            </div>
+        <!-- =================================
+             MAIN CONTENT
+        ================================== -->
 
-            <div class="flex gap-3">
-              <a
-                href="history.html"
-                class="px-5 py-3 rounded-lg border border-gray-300 bg-white hover:bg-gray-100"
-              >
-                📋 History
-              </a>
+        <main class="flex-1 p-8">
 
-              <button id="generateBtn" class="btn-primary">
-                🌱 Generate ESG Score
-              </button>
-            </div>
-          </div>
 
-          <div class="grid lg:grid-cols-3 gap-6">
-            <!-- LEFT -->
+            <!-- PAGE TITLE -->
 
-            <div class="lg:col-span-2 space-y-6">
-              <!-- Environmental -->
+            <div
+                class="
+                    flex
+                    justify-between
+                    items-center
+                    mb-8
+                "
+            >
 
-              <div class="card">
-                <h2 class="section-title">Environmental</h2>
+                <div>
 
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label>Renewable Energy (%)</label>
-
-                    <input id="renewable_energy" type="number" class="input" />
-                  </div>
-
-                  <div>
-                    <label>Water Consumption</label>
-
-                    <input id="water_consumption" type="number" class="input" />
-                  </div>
-
-                  <div>
-                    <label>Recycling Rate (%)</label>
-
-                    <input id="recycling_rate" type="number" class="input" />
-                  </div>
-
-                  <div class="flex items-center mt-8">
-                    <input id="environmental_policy" type="checkbox" />
-
-                    <label class="ml-2"> Environmental Policy </label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Social -->
-
-              <div class="card">
-                <h2 class="section-title">Social</h2>
-
-                <div class="grid md:grid-cols-2 gap-4">
-                  <input
-                    id="employee_satisfaction"
-                    class="input"
-                    type="number"
-                    placeholder="Employee Satisfaction (%)"
-                  />
-
-                  <input
-                    id="training_hours"
-                    class="input"
-                    type="number"
-                    placeholder="Training Hours"
-                  />
-
-                  <input
-                    id="gender_diversity"
-                    class="input"
-                    type="number"
-                    placeholder="Gender Diversity (%)"
-                  />
-
-                  <div class="flex items-center">
-                    <input id="community_projects" type="checkbox" />
-
-                    <label class="ml-2"> Community Projects </label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Governance -->
-
-              <div class="card">
-                <h2 class="section-title">Governance</h2>
-
-                <div class="grid md:grid-cols-2 gap-4">
-                  <input
-                    id="board_meetings"
-                    class="input"
-                    type="number"
-                    placeholder="Board Meetings"
-                  />
-
-                  <div class="flex items-center">
-                    <input id="ethics_policy" type="checkbox" />
-
-                    <label class="ml-2"> Ethics Policy </label>
-                  </div>
-
-                  <div class="flex items-center">
-                    <input id="compliance" type="checkbox" />
-
-                    <label class="ml-2"> Compliance </label>
-                  </div>
-
-                  <div class="flex items-center">
-                    <input id="risk_management" type="checkbox" />
-
-                    <label class="ml-2"> Risk Management </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- RIGHT -->
-
-            <div>
-              <div class="card sticky top-6">
-                <h2 class="text-xl font-bold mb-4">ESG Result</h2>
-
-                <div class="space-y-5">
-                  <div>
-                    <p class="text-gray-500">Overall Score</p>
-
-                    <h1
-                      id="overall_score"
-                      class="text-5xl font-bold text-green-600"
+                    <div
+                        class="
+                            flex
+                            items-center
+                            gap-3
+                            mb-2
+                        "
                     >
-                      --
-                    </h1>
 
-                    <p id="overall_status">Waiting...</p>
-                  </div>
+                        <div
+                            class="
+                                w-11
+                                h-11
+                                rounded-xl
+                                bg-emerald-100
+                                text-emerald-600
+                                flex
+                                items-center
+                                justify-center
+                            "
+                        >
 
-                  <hr />
+                            <i
+                                class="
+                                    fa-solid
+                                    fa-seedling
+                                    text-xl
+                                "
+                            ></i>
 
-                  <div>
-                    <strong>Environmental</strong>
+                        </div>
 
-                    <p id="environment_score">--</p>
-                  </div>
 
-                  <div>
-                    <strong>Social</strong>
+                        <h1
+                            class="
+                                text-3xl
+                                font-bold
+                                text-slate-900
+                            "
+                        >
+                            ESG Assessment
+                        </h1>
 
-                    <p id="social_score">--</p>
-                  </div>
+                    </div>
 
-                  <div>
-                    <strong>Governance</strong>
 
-                    <p id="governance_score">--</p>
-                  </div>
+                    <p class="text-gray-500">
 
-                  <hr />
+                        Enter ESG indicators to generate
+                        the ESG score.
 
-                  <div>
-                    <strong> Recommendation </strong>
-
-                    <p id="recommendation" class="text-sm text-gray-600">
-                      Generate ESG score first.
                     </p>
-                  </div>
+
                 </div>
-              </div>
+
+
+                <!-- ACTIONS -->
+
+                <div
+                    class="
+                        flex
+                        gap-3
+                    "
+                >
+
+                    <a
+                        href="history.html"
+                        class="
+                            px-5
+                            py-3
+                            rounded-lg
+                            border
+                            border-gray-300
+                            bg-white
+                            hover:bg-gray-50
+                            flex
+                            items-center
+                            gap-2
+                            transition
+                        "
+                    >
+
+                        <i
+                            class="
+                                fa-solid
+                                fa-clock-rotate-left
+                            "
+                        ></i>
+
+                        History
+
+                    </a>
+
+
+                    <button
+                        id="generateBtn"
+                        class="
+                            btn-primary
+                            flex
+                            items-center
+                            gap-2
+                        "
+                    >
+
+                        <i
+                            class="
+                                fa-solid
+                                fa-seedling
+                            "
+                        ></i>
+
+                        Generate ESG Score
+
+                    </button>
+
+                </div>
+
             </div>
-          </div>
+
+
+            <!-- =================================
+                 ESG CONTENT
+            ================================== -->
+
+            <div
+                class="
+                    grid
+                    grid-cols-1
+                    lg:grid-cols-3
+                    gap-6
+                "
+            >
+
+
+                <!-- =================================
+                     LEFT
+                ================================== -->
+
+                <div
+                    class="
+                        lg:col-span-2
+                        space-y-6
+                    "
+                >
+
+
+                    <!-- ENVIRONMENTAL -->
+
+                    <div class="card">
+
+                        <div
+                            class="
+                                flex
+                                items-center
+                                gap-3
+                                mb-6
+                            "
+                        >
+
+                            <div
+                                class="
+                                    w-10
+                                    h-10
+                                    rounded-lg
+                                    bg-green-100
+                                    text-green-600
+                                    flex
+                                    items-center
+                                    justify-center
+                                "
+                            >
+
+                                <i
+                                    class="
+                                        fa-solid
+                                        fa-leaf
+                                    "
+                                ></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2
+                                    class="
+                                        section-title
+                                        mb-0
+                                    "
+                                >
+                                    Environmental
+                                </h2>
+
+                                <p
+                                    class="
+                                        text-sm
+                                        text-gray-500
+                                    "
+                                >
+                                    Environmental sustainability indicators
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="
+                                grid
+                                md:grid-cols-2
+                                gap-5
+                            "
+                        >
+
+                            <div>
+
+                                <label class="form-label">
+
+                                    Renewable Energy (%)
+
+                                </label>
+
+                                <input
+                                    id="renewable_energy"
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    class="input"
+                                    placeholder="Enter percentage"
+                                >
+
+                            </div>
+
+
+                            <div>
+
+                                <label class="form-label">
+
+                                    Water Consumption
+
+                                </label>
+
+                                <input
+                                    id="water_consumption"
+                                    type="number"
+                                    min="0"
+                                    class="input"
+                                    placeholder="Enter consumption"
+                                >
+
+                            </div>
+
+
+                            <div>
+
+                                <label class="form-label">
+
+                                    Recycling Rate (%)
+
+                                </label>
+
+                                <input
+                                    id="recycling_rate"
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    class="input"
+                                    placeholder="Enter percentage"
+                                >
+
+                            </div>
+
+
+                            <label
+                                class="
+                                    flex
+                                    items-center
+                                    gap-3
+                                    mt-7
+                                    cursor-pointer
+                                "
+                            >
+
+                                <input
+                                    id="environmental_policy"
+                                    type="checkbox"
+                                    class="w-5 h-5"
+                                >
+
+                                <span>
+
+                                    Environmental Policy
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SOCIAL -->
+
+                    <div class="card">
+
+                        <div
+                            class="
+                                flex
+                                items-center
+                                gap-3
+                                mb-6
+                            "
+                        >
+
+                            <div
+                                class="
+                                    w-10
+                                    h-10
+                                    rounded-lg
+                                    bg-blue-100
+                                    text-blue-600
+                                    flex
+                                    items-center
+                                    justify-center
+                                "
+                            >
+
+                                <i
+                                    class="
+                                        fa-solid
+                                        fa-people-group
+                                    "
+                                ></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2
+                                    class="
+                                        section-title
+                                        mb-0
+                                    "
+                                >
+                                    Social
+                                </h2>
+
+                                <p
+                                    class="
+                                        text-sm
+                                        text-gray-500
+                                    "
+                                >
+                                    Employee and community indicators
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="
+                                grid
+                                md:grid-cols-2
+                                gap-5
+                            "
+                        >
+
+                            <div>
+
+                                <label class="form-label">
+
+                                    Employee Satisfaction (%)
+
+                                </label>
+
+                                <input
+                                    id="employee_satisfaction"
+                                    class="input"
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    placeholder="Enter percentage"
+                                >
+
+                            </div>
+
+
+                            <div>
+
+                                <label class="form-label">
+
+                                    Training Hours
+
+                                </label>
+
+                                <input
+                                    id="training_hours"
+                                    class="input"
+                                    type="number"
+                                    min="0"
+                                    placeholder="Enter hours"
+                                >
+
+                            </div>
+
+
+                            <div>
+
+                                <label class="form-label">
+
+                                    Gender Diversity (%)
+
+                                </label>
+
+                                <input
+                                    id="gender_diversity"
+                                    class="input"
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    placeholder="Enter percentage"
+                                >
+
+                            </div>
+
+
+                            <label
+                                class="
+                                    flex
+                                    items-center
+                                    gap-3
+                                    mt-7
+                                    cursor-pointer
+                                "
+                            >
+
+                                <input
+                                    id="community_projects"
+                                    type="checkbox"
+                                    class="w-5 h-5"
+                                >
+
+                                <span>
+
+                                    Community Projects
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GOVERNANCE -->
+
+                    <div class="card">
+
+                        <div
+                            class="
+                                flex
+                                items-center
+                                gap-3
+                                mb-6
+                            "
+                        >
+
+                            <div
+                                class="
+                                    w-10
+                                    h-10
+                                    rounded-lg
+                                    bg-purple-100
+                                    text-purple-600
+                                    flex
+                                    items-center
+                                    justify-center
+                                "
+                            >
+
+                                <i
+                                    class="
+                                        fa-solid
+                                        fa-scale-balanced
+                                    "
+                                ></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2
+                                    class="
+                                        section-title
+                                        mb-0
+                                    "
+                                >
+                                    Governance
+                                </h2>
+
+                                <p
+                                    class="
+                                        text-sm
+                                        text-gray-500
+                                    "
+                                >
+                                    Governance and compliance indicators
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="
+                                grid
+                                md:grid-cols-2
+                                gap-5
+                            "
+                        >
+
+                            <div>
+
+                                <label class="form-label">
+
+                                    Board Meetings
+
+                                </label>
+
+                                <input
+                                    id="board_meetings"
+                                    class="input"
+                                    type="number"
+                                    min="0"
+                                    placeholder="Enter number"
+                                >
+
+                            </div>
+
+
+                            <label
+                                class="
+                                    flex
+                                    items-center
+                                    gap-3
+                                    mt-7
+                                    cursor-pointer
+                                "
+                            >
+
+                                <input
+                                    id="ethics_policy"
+                                    type="checkbox"
+                                    class="w-5 h-5"
+                                >
+
+                                <span>
+
+                                    Ethics Policy
+
+                                </span>
+
+                            </label>
+
+
+                            <label
+                                class="
+                                    flex
+                                    items-center
+                                    gap-3
+                                    cursor-pointer
+                                "
+                            >
+
+                                <input
+                                    id="compliance"
+                                    type="checkbox"
+                                    class="w-5 h-5"
+                                >
+
+                                <span>
+
+                                    Compliance
+
+                                </span>
+
+                            </label>
+
+
+                            <label
+                                class="
+                                    flex
+                                    items-center
+                                    gap-3
+                                    cursor-pointer
+                                "
+                            >
+
+                                <input
+                                    id="risk_management"
+                                    type="checkbox"
+                                    class="w-5 h-5"
+                                >
+
+                                <span>
+
+                                    Risk Management
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     RIGHT RESULT
+                ================================== -->
+
+                <div>
+
+                    <div
+                        class="
+                            card
+                            sticky
+                            top-6
+                        "
+                    >
+
+                        <div
+                            class="
+                                flex
+                                items-center
+                                gap-3
+                                mb-6
+                            "
+                        >
+
+                            <div
+                                class="
+                                    w-10
+                                    h-10
+                                    rounded-lg
+                                    bg-emerald-100
+                                    text-emerald-600
+                                    flex
+                                    items-center
+                                    justify-center
+                                "
+                            >
+
+                                <i
+                                    class="
+                                        fa-solid
+                                        fa-chart-pie
+                                    "
+                                ></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h2
+                                    class="
+                                        text-xl
+                                        font-bold
+                                    "
+                                >
+                                    ESG Result
+                                </h2>
+
+                                <p
+                                    class="
+                                        text-sm
+                                        text-gray-500
+                                    "
+                                >
+                                    Assessment summary
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- OVERALL -->
+
+                        <div
+                            class="
+                                bg-slate-50
+                                rounded-xl
+                                p-5
+                                mb-5
+                            "
+                        >
+
+                            <p
+                                class="
+                                    text-gray-500
+                                    text-sm
+                                "
+                            >
+                                Overall Score
+                            </p>
+
+
+                            <h1
+                                id="overall_score"
+                                class="
+                                    text-5xl
+                                    font-bold
+                                    text-green-600
+                                    mt-2
+                                "
+                            >
+                                --
+                            </h1>
+
+
+                            <p
+                                id="overall_status"
+                                class="
+                                    text-gray-600
+                                    mt-2
+                                "
+                            >
+                                Waiting...
+                            </p>
+
+                        </div>
+
+
+                        <!-- ENVIRONMENTAL -->
+
+                        <div class="result-item">
+
+                            <div
+                                class="
+                                    flex
+                                    justify-between
+                                    items-center
+                                "
+                            >
+
+                                <span
+                                    class="
+                                        font-semibold
+                                    "
+                                >
+                                    <i
+                                        class="
+                                            fa-solid
+                                            fa-leaf
+                                            text-green-600
+                                            mr-2
+                                        "
+                                    ></i>
+
+                                    Environmental
+                                </span>
+
+
+                                <span
+                                    id="environment_score"
+                                    class="font-semibold"
+                                >
+                                    --
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SOCIAL -->
+
+                        <div class="result-item">
+
+                            <div
+                                class="
+                                    flex
+                                    justify-between
+                                    items-center
+                                "
+                            >
+
+                                <span
+                                    class="
+                                        font-semibold
+                                    "
+                                >
+                                    <i
+                                        class="
+                                            fa-solid
+                                            fa-people-group
+                                            text-blue-600
+                                            mr-2
+                                        "
+                                    ></i>
+
+                                    Social
+                                </span>
+
+
+                                <span
+                                    id="social_score"
+                                    class="font-semibold"
+                                >
+                                    --
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- GOVERNANCE -->
+
+                        <div class="result-item">
+
+                            <div
+                                class="
+                                    flex
+                                    justify-between
+                                    items-center
+                                "
+                            >
+
+                                <span
+                                    class="
+                                        font-semibold
+                                    "
+                                >
+                                    <i
+                                        class="
+                                            fa-solid
+                                            fa-scale-balanced
+                                            text-purple-600
+                                            mr-2
+                                        "
+                                    ></i>
+
+                                    Governance
+                                </span>
+
+
+                                <span
+                                    id="governance_score"
+                                    class="font-semibold"
+                                >
+                                    --
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RECOMMENDATION -->
+
+                        <div
+                            class="
+                                mt-6
+                                pt-5
+                                border-t
+                            "
+                        >
+
+                            <h3
+                                class="
+                                    font-semibold
+                                    mb-2
+                                "
+                            >
+
+                                <i
+                                    class="
+                                        fa-solid
+                                        fa-lightbulb
+                                        text-yellow-500
+                                        mr-2
+                                    "
+                                ></i>
+
+                                Recommendation
+
+                            </h3>
+
+
+                            <p
+                                id="recommendation"
+                                class="
+                                    text-sm
+                                    text-gray-600
+                                    leading-6
+                                "
+                            >
+                                Generate ESG score first.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </main>
 
+
+        <!-- FOOTER -->
+
         <div id="footer"></div>
-      </div>
+
     </div>
 
-    <script type="module" src="esg.js"></script>
-  </body>
+
+    <!-- ESG JS -->
+
+    <script
+        type="module"
+        src="esg.js"
+    ></script>
+
+</body>
+
 </html>

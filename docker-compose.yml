@@ -16,7 +16,11 @@ services:
       - ./database/ecofinance_sl.sql:/docker-entrypoint-initdb.d/ecofinance_sl.sql:ro
 
     healthcheck:
-      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -u root -p$${MARIADB_ROOT_PASSWORD} --silent"]
+      test:
+        [
+          "CMD-SHELL",
+          "mariadb-admin ping -h localhost -u root -p$${MARIADB_ROOT_PASSWORD} --silent"
+        ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -25,12 +29,16 @@ services:
     networks:
       - ecofinance
 
+
   backend:
     build:
       context: ./backend
 
     container_name: ecofinance-backend
     restart: unless-stopped
+
+    env_file:
+      - ./backend/.env
 
     environment:
       DB_HOST: db
@@ -51,6 +59,7 @@ services:
     networks:
       - ecofinance
 
+
   caddy:
     image: caddy:2-alpine
     container_name: ecofinance-caddy
@@ -62,7 +71,7 @@ services:
 
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./frontend:/srv/frontend:ro
+      - ./frontend-test:/srv/frontend:ro
       - caddy_data:/data
       - caddy_config:/config
 
@@ -71,6 +80,7 @@ services:
 
     networks:
       - ecofinance
+
 
 networks:
   ecofinance:

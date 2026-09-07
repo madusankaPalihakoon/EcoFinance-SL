@@ -88,6 +88,19 @@ async function loadDashboard() {
 
         }
 
+        // COMPANY NAME - Header
+        const headerCompanyName =
+            document.getElementById(
+                "headerCompanyName"
+            );
+
+        if (headerCompanyName) {
+
+            headerCompanyName.textContent =
+                data.company_name || "Company Name";
+
+        }
+
 
         // ESG SCORE
 
